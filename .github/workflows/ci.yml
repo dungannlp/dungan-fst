@@ -1,0 +1,35 @@
+name: build-and-test
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install HFST
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends hfst
+          hfst-lookup --version | head -1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build analysers (Gansu + Shaanxi)
+        run: make all
+
+      - name: Gold tests (analysis + generation)
+        run: python3 tests/run-tests.py
+
+      - name: Precision (recall of correct reading)
+        run: python3 tests/precision.py gan
+      - name: Swadesh core coverage
+        run: python3 tests/swadesh.py
+      - name: Corpus coverage (regression guard)
+        run: |
+          python3 tests/coverage.py gan
+          python3 tests/coverage.py shaanxi
+          python3 tests/check-coverage.py

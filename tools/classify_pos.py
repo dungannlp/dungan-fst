@@ -11,6 +11,7 @@ def classify(gloss):
     words = re.findall(r'[а-яёә\-]+', g)
     if not words:
         return "n"
+
     # Single-word glosses: trust the ending
     if len(words) == 1:
         w = words[0]

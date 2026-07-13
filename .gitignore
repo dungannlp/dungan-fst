@@ -1,0 +1,6 @@
+.idea*
+
+*.hfst
+
+__pycache__/
+*.pyc

@@ -1,0 +1,23 @@
+
+LEXICON PronDial
+вә:вә        PrnPersSg1 ;
+вәму:вәму    PrnPersPl1 ;
+таму:таму    PrnPersPl3 ;
+
+LEXICON PrnPersSg1
+%<prn%>%<pers%>%<p1%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl1
+%<prn%>%<pers%>%<p1%>%<pl%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl3
+%<prn%>%<pers%>%<p3%>%<pl%>:  PrnPossSlot ;
+
+LEXICON CopulaDial
+сы:сы        Cop ;
+
+LEXICON VerbDial
+ви:ви        V ;
+
+LEXICON ClsDial
+гә:гә        Cls ;

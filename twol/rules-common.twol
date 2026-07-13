@@ -1,0 +1,23 @@
+
+Alphabet
+ А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
+ а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я
+ Ә ә Ң ң Җ җ Ў ў Ү ү
+ %>:0 %+:0
+ ;
+
+Sets
+ Vowel = а е ё и о у ы э ю я ә ў ү ;
+ Cons  = б в г д ж з й к л м н п р с т ф х ц ч ш щ ң җ ;
+ Labial = б п м ф в ;
+
+Definitions
+
+Rules
+
+"Plural boundary deletion"
+%>:0 <=> _ ;
+
+"Clitic boundary deletion"
+%+:0 <=> _ ;
+

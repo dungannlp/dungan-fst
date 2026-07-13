@@ -1,0 +1,299 @@
+
+
+LEXICON Pronouns
+
+ни:ни        PrnPersSg2 ;
+та:та        PrnPersSg3 ;
+ниму:ниму    PrnPersPl2 ;
+за:за        PrnPersPl1i ;
+заму:заму    PrnPersPl1i ;
+
+җыгә:җыгә     PrnDemEnd ;
+җәгә:җәгә     PrnDemEnd ;
+нагә:нагә     PrnDemEnd ;
+ныйгә:ныйгә   PrnDemEnd ;
+
+са:са        PrnItgEnd ;
+сый:сый      PrnItgEnd ;
+зуа:зуа      PrnItgEnd ;
+зали:зали    PrnItgEnd ;
+
+LEXICON PrnPersSg2
+%<prn%>%<pers%>%<p2%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersSg3
+%<prn%>%<pers%>%<p3%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl2
+%<prn%>%<pers%>%<p2%>%<pl%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl1i
+%<prn%>%<pers%>%<p1%>%<pl%>%<incl%>:  PrnPossSlot ;
+
+
+
+LEXICON Nouns
+
+жын:жын          T1-N-AN ;
+есын:есын        T2-N-AN ;
+лохан:лохан      T2-N-AN ;
+лопәр:лопәр      N-AN ;
+нүзы:нүзы        N-AN ;
+эрзы:эрзы        T1-N-AN ;
+вава:вава        T1-N-AN ;
+эр:эр            N-AN ;
+ва:ва            N-AN ;
+гуә:гуә          N-NN ;
+эр:эр            Num ;
+дада:дада        T1-N-AN ;
+мама:мама        T1-N-AN ;
+гўнён:гўнён      T1-N-AN ;
+мучин:мучин      T2-N-AN ;
+фучин:фучин      N-AN ;
+лон:лон          T1-N-AN ;
+ху:ху            N-AN ;
+мо:мо            N-AN ;
+ён:ён            T1-N-AN ;
+гу:гу            N-AN ;
+минзў:минзў      T1-N-AN ;
+сыҗя:сыҗя        T1-N-AN ;
+кә:кә        N-AN ;
+жынму:жынму      T1-N-AN ;
+
+гуйҗя:гуйҗя      T1-N-NN ;
+гуй:гуй          N-NN ;
+йүян:йүян        T2-N-NN ;
+хуа:хуа          N-NN ;
+фу:фу            N-NN ;
+зы:зы            N-NN ;
+сывын:сывын      T1-N-NN ;
+щёфә:щёфә        N-NN ;
+лышы:лышы        N-NN ;
+вынхуа:вынхуа    T1-N-NN ;
+вынмин:вынмин    T1-N-NN ;
+шыҗе:шыҗе        T3-N-NN ;
+дычү:дычү        N-NN ;
+дифон:дифон      T3-N-NN ;
+чын:чын          T3-N-NN ;
+сан:сан          N-NN ;
+хә:хә            N-NN ;
+тян:тян          T1-N-NN ;
+ди:ди            N-NN ;
+нян:нян          T3-N-NN ;
+жызы:жызы        T1-N-NN ;
+сыхур:сыхур      T1-N-NN ;
+зохуа:зохуа      T3-N-NN ;
+щин:щин          T1-N-NN ;
+мин:мин          T1-N-NN ;
+лў:лў            T3-N-NN ;
+чё:чё            N-NN ;
+жынку:жынку      N-NN ;
+шычи:шычи        N-NN ;
+җя:җя            T1-N-NN ;
+цун:цун          N-NN ;
+җюцай:җюцай      N-NN ;
+бозы:бозы        N-NN ;
+жу:жу            N-NN ;
+ёнжу:ёнжу        T1-N-NN ;
+лўфи:лўфи        T3-N-NN ;
+жәту:жәту        N-NN ;
+хуәлузы:хуәлузы  N-NN ;
+дунщи:дунщи      T1-N-NN ;
+донвәр:донвәр    N-NN ;
+
+
+
+LEXICON ProperNouns
+
+Җунгуй:Җунгуй            Np ;
+Җунхуа:Җунхуа           Np ;
+Гансў:Гансў             Np ;
+Шэнщы:Шэнщы             Np ;
+Шанщы:Шанщы             Np ;
+Быйҗин:Быйҗин           Np ;
+Шонхэ:Шонхэ             Np ;
+Тэван:Тэван             Np ;
+Россия:Россия           Np ;
+Хырхызстан:Хырхызстан   Np ;
+Хазахстан:Хазахстан     Np ;
+Ясыр:Ясыр               Np ;
+Шывазы:Шывазы           Np ;
+Хуэйзў:Хуэйзў           Np ;
+
+
+
+LEXICON Verbs
+
+чы:чы            T1-V ;
+хә:хә            V ;
+луә:луә          V ;
+зў:зў            V ;
+зу:зу            V ;
+лэ:лэ            V ;
+чи:чи            V ;
+ще:ще            V ;
+нян:нян          T3-V ;
+фә:фә            V ;
+шә:шә            V ;
+канҗян:канҗян    T3-V ;
+кан:кан          V ;
+ю:ю              V ;
+щён:щён          V ;
+щинэ:щинэ        T2-V ;
+җуа:җуа          T1-V ;
+дын:дын          V ;
+шу:шу            T2-V ;
+по:по            V ;
+фи:фи            T1-V ;
+зан:зан          V ;
+тин:тин          V ;
+хуэйда:хуэйда    T1-V ;
+вынҗи:вынҗи      V ;
+гунзуә:гунзуә    V ;
+нянван:нянван    T3-V ;
+сын:сын          V ;
+җў:җў            V ;
+бохў:бохў        T2-V ;
+фаҗон:фаҗон      T1-V ;
+
+
+
+LEXICON Adjectives
+
+да:да            Adj ;
+щё:щё            Adj ;
+хо:хо            Adj ;
+ха:ха            Adj ;
+жә:жә            Adj ;
+лын:лын          Adj ;
+куан:куан        T1-Adj ;
+чё:чё            Adj ;
+нанчин:нанчин    Adj ;
+ло:ло            Adj ;
+гощин:гощин      T1-Adj ;
+җүнмый:җүнмый    T3-Adj ;
+юмин:юмин        Adj ;
+дуә:дуә          Adj ;
+шо:шо            Adj ;
+
+
+
+LEXICON Adverbs
+
+бу:бу            Adv ;
+мә:мә            Adv ;
+зэ:зэ            Adv ;
+ду:ду            T1-Adv ;
+е:е              Adv ;
+зу:зу            Adv ;
+хан:хан          T1-Adv ;
+кәҗы:кәҗы        Adv ;
+вонщён:вонщён    T3-Adv ;
+манмар:манмар    T3-Adv ;
+йидани:йидани    Adv ;
+
+
+
+LEXICON Numerals
+
+йи:йи            Num ;
+лён:лён          Num ;
+сан:сан          Num ;
+сы:сы            Num ;
+ву:ву            Num ;
+лю:лю            Num ;
+чи:чи            Num ;
+ба:ба            Num ;
+җю:җю            Num ;
+шы:шы            Num ;
+бый:бый          Num ;
+чян:чян          Num ;
+ван:ван          Num ;
+
+
+
+LEXICON Classifiers
+
+гә:гә            Cls ;
+ба:ба            Cls ;
+җон:җон          Cls ;
+тё:тё            Cls ;
+җы:җы            Cls ;
+пи:пи            Cls ;
+бын:бын          Cls ;
+фу:фу            Cls ;
+
+
+
+LEXICON Postpositions
+
+шон:шон          Post ;
+ни:ни            Post ;
+литу:литу        Post ;
+гынчян:гынчян    Post ;
+яншон:яншон      Post ;
+
+
+
+LEXICON Conjunctions
+
+дэ:дэ            CnjCoo ;
+лян:лян          CnjCoo ;
+кәсы:кәсы        CnjCoo ;
+данпа:данпа      CnjCoo ;
+кэшы:кэшы        CnjCoo ;
+йинцысы:йинцысы  CnjSub ;
+зущён:зущён      CnjSub ;
+
+
+
+LEXICON Particles
+
+ба:ба            PartBa ;
+ги:ги            PartGi ;
+ди:ди            PartGen ;
+ли:ли            PartLi ;
+ни:ни            PartNi ;
+
+
+
+LEXICON Interjections
+
+ама:ама          Ij ;
+о:о              Ij ;
+он:он            Ij ;
+
+
+
+LEXICON NounsExtra
+
+шын:шын          N-NN ;
+җин:җин          T2-N-NN ;
+йуэ:йуэ          N-NN ;
+фын:фын          N-NN ;
+йүан:йүан        N-NN ;
+җинҗы:җинҗы      N-NN ;
+жынмин:жынмин    T1-N-NN ;
+гунхәгуй:гунхәгуй N-NN ;
+дабу:дабу        N-NN ;
+вуйүан:вуйүан    N-NN ;
+дынҗы:дынҗы      N-NN ;
+
+Хуэй:Хуэй        Np ;
+
+LEXICON VerbsExtra
+
+җё:җё            V ;
+до:до            V ;
+чў:чў            V ;
+йу:йу            V ;
+ги:ги            V ;
+лай:лай          V ;
+
+LEXICON AdjExtra
+
+җун:җун          Adj ;
+
+LEXICON Negators
+
+бә:бә            Neg ;

@@ -1,0 +1,279 @@
+
+Multichar_Symbols
+
+%<n%>
+%<np%>
+%<vblex%>
+%<adj%>
+%<adv%>
+%<prn%>
+%<num%>
+%<cnjcoo%>
+%<cnjsub%>
+%<post%>
+%<part%>
+%<cop%>
+%<ij%>
+%<cls%>
+
+%<pers%>
+%<dem%>
+%<itg%>
+%<p1%>
+%<p2%>
+%<p3%>
+%<sg%>
+%<pl%>
+%<incl%>
+%<px%>
+
+%<an%>
+%<nn%>
+
+%<t1%>
+%<t2%>
+%<t3%>
+
+%<pst%>
+%<prog%>
+%<fut%>
+%<exp%>
+
+%<comp%>
+%<sup%>
+%<neg%>
+
+%<loc%>
+
+%<gen%>
+%<advl%>
+
+%>
+%+
+
+
+
+LEXICON Root
+
+Nouns ;
+NounsExtra ;
+SalmiDict ;
+NounsWik ;
+VerbsWik ;
+AdjWik ;
+AdvWik ;
+NumWik ;
+PropWik ;
+IjWik ;
+CorpusProp ;
+CorpusNoun ;
+ProperNouns ;
+Verbs ;
+VerbsExtra ;
+Adjectives ;
+AdjExtra ;
+Adverbs ;
+Negators ;
+Pronouns ;
+Numerals ;
+Classifiers ;
+Conjunctions ;
+Postpositions ;
+LocSalmi ;
+NounsSalmi ;
+VerbsSalmi ;
+AdjSalmi ;
+CorpusProp2 ;
+CorpusNoun2 ;
+CorpusVerb2 ;
+CorpusNoun3 ;
+CorpusProp3 ;
+CorpusAdv3 ;
+CorpusVerb3 ;
+CorpusNoun4 ;
+CorpusMisc4 ;
+NounsYan ;
+NounsAnYan ;
+VerbsYan ;
+AdjYan ;
+AdvYan ;
+NumYan ;
+NounsYan2 ;
+NounsAnYan2 ;
+VerbsYan2 ;
+AdjYan2 ;
+AdvYan2 ;
+NounsYan3 ;
+NounsAnYan3 ;
+VerbsYan3 ;
+AdjYan3 ;
+YanZ_adj_t1 ;
+YanZ_adj_t2 ;
+YanZ_adj_t3 ;
+YanZ_adv_t1 ;
+YanZ_adv_t2 ;
+YanZ_n_t1 ;
+YanZ_n_t2 ;
+YanZ_n_t3 ;
+YanZ_nan_t1 ;
+YanZ_nan_t2 ;
+YanZ_nan_t3 ;
+YanZ_vblex_t1 ;
+YanZ_vblex_t2 ;
+YanZ_vblex_t3 ;
+Yan5_adj_t1 ;
+Yan5_adj_t2 ;
+Yan5_adj_t3 ;
+Yan5_adv_t1 ;
+Yan5_adv_t2 ;
+NamesPlace ;
+NamesPerson ;
+NamesPeople ;
+NamesLoan ;
+NamesExtra ;
+NamesTail ;
+NamesFinal ;
+NamesReligion ;
+Core_t1_NNN ;
+Core_t2_NNN ;
+Core_t3_NNN ;
+Yan5_adv_t3 ;
+Yan5_n_t1 ;
+Yan5_n_t2 ;
+Yan5_n_t3 ;
+Yan5_nan_t1 ;
+Yan5_nan_t2 ;
+Yan5_nan_t3 ;
+Yan5_vblex_t1 ;
+Yan5_vblex_t2 ;
+Yan5_vblex_t3 ;
+Particles ;
+Interjections ;
+
+PronDial ;
+CopulaDial ;
+VerbDial ;
+ClsDial ;
+
+
+
+LEXICON PrnPossSlot
+        # ;
+%<px%>:%+ди  # ;
+
+LEXICON PrnDemEnd
+%<prn%>%<dem%>:  # ;
+
+LEXICON PrnItgEnd
+%<prn%>%<itg%>:  # ;
+
+LEXICON Cop
+%<cop%>:  # ;
+
+LEXICON N-AN
+%<n%>%<an%>:  N-AN-Num ;
+
+LEXICON N-AN-Num
+%<sg%>:        NounEnd ;
+%<pl%>:%>му    NounEnd ;
+
+LEXICON N-NN
+%<n%>%<nn%>:  NounEnd ;
+
+LEXICON NounEnd
+                # ;
+%<loc%>:%+ни    # ;
+%<loc%>:%+шон   # ;
+%<prog%>:%+дини # ;
+%<prog%>:%+ди   # ;
+%<pst%>:%+ли    # ;
+%<fut%>:%+ни    # ;
+
+LEXICON Np
+%<np%>:  NpEnd ;
+
+LEXICON NpEnd
+                # ;
+%<gen%>:%+ди    # ;
+%<pl%>:%+му     # ;
+%<pl%>%<gen%>:%+му%+ди   # ;
+%<sg%>:%+жын    # ;
+%<sg%>%<gen%>:%+жын%+ди   # ;
+%<pl%>:%+жын%+му  # ;
+%<pl%>%<gen%>:%+жын%+му%+ди  # ;
+
+LEXICON V
+%<vblex%>:  VAspSlot ;
+
+LEXICON VAspSlot
+              # ;
+%<pst%>:%+ли      # ;
+%<prog%>:%+дини   # ;
+%<prog%>:%+ди     # ;
+%<fut%>:%+ни      # ;
+%<exp%>:%+гуә     # ;
+
+LEXICON Adj
+%<adj%>:  AdjDeg ;
+
+LEXICON AdjDeg
+              # ;
+%<comp%>:%+щер   # ;
+%<sup%>:%+дихын  # ;
+%<prog%>:%+дини   # ;
+%<prog%>:%+ди     # ;
+
+LEXICON Adv
+%<adv%>:  # ;
+
+LEXICON Neg
+%<neg%>:  # ;
+
+LEXICON Num
+%<num%>:  NumCls ;
+
+LEXICON NumCls
+        # ;
+%<cls%>:%>гә   # ;
+%<cls%>:%>ба   # ;
+%<cls%>:%>җон  # ;
+%<cls%>:%>тё   # ;
+%<cls%>:%>бын  # ;
+
+LEXICON Cls
+%<cls%>:  # ;
+
+LEXICON Post
+%<post%>:  # ;
+
+LEXICON Loc
+%<loc%>:  LocDi ;
+
+LEXICON LocDi
+        # ;
+%<gen%>:%+ди  # ;
+
+LEXICON CnjCoo
+%<cnjcoo%>:  # ;
+
+LEXICON CnjSub
+%<cnjsub%>:  # ;
+
+LEXICON PartBa
+%<part%>:  # ;
+
+LEXICON PartGi
+%<post%>:  # ;
+
+LEXICON PartGen
+%<part%>%<gen%>:  # ;
+
+LEXICON PartLi
+%<part%>%<pst%>:  # ;
+
+LEXICON PartNi
+%<part%>:  # ;
+
+LEXICON Ij
+%<ij%>:  # ;
+

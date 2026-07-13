@@ -1,8 +1,8 @@
 # Sources
 
-This file lists every source behind the analyser: the grammatical literaturethat grounds the rules, the lexicon source, and the corpora used formdevelopment and evaluation. Per-rule, page-level provenance is given in the accompanying article (under review).
+This file lists every source behind the analyser: the grammatical literaturet that grounds the rules, the lexicon source, and the corpora used formdevelopment and evaluation. Per-rule, page-level provenance is given in the accompanying article (under review).
 
-## Grammatical & linguistic literature (as cited in the article)
+## Grammatical & linguistic literature
 
 - Драгунов, А. А. and Драгунова, Е. Н. (1936). *Über die dunganische Sprache*. Archiv Orientální. т. 8, с. 34–48.
 - Драгунов, А. А. and Драгунова, Е. Н. (1937). *Дунганский язык*. Записки Института востоковедения АН СССР. т. 6, с. 117–131.
@@ -45,8 +45,7 @@ This file lists every source behind the analyser: the grammatical literaturethat
 
 - The stem lexicon is mined from the openly available PDF scan of Yusup Yanshansin's *Concise Dungan-Russian Dictionary* (see the entry above);
   6,987 entries with headword-tone tags live in `stems/stems-yanshansin.lexc`.  OCR artefacts of the Dungan-specific letters (җ ў ү ә ң) were repaired via a   deterministic marker table; POS is derived from the Russian gloss's head word   (`tools/classify_pos.py`).
-- Additional stems: hand-built core (`stems-common.lexc`), lemmas from
-  en.wiktionary.org (`stems-wiktionary.lexc`), vocabulary attested in Salmi's   grammar and dictionary (`stems-salmi*.lexc`), corpus-verified proper nouns   and loanwords (`stems-names.lexc`).
+- Additional stems: hand-built core (`stems-common.lexc`), lemmas from en.wiktionary.org (`stems-wiktionary.lexc`), vocabulary attested in Salmi's   grammar and dictionary (`stems-salmi*.lexc`), corpus-verified proper nouns   and loanwords (`stems-names.lexc`).
 
 ## Development corpora (included, `tests/data/`)
 

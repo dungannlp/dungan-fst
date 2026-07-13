@@ -1,0 +1,142 @@
+# ============================================================================
+# tests/gold-analyses.txt — GOLD-STANDARD analysis tests
+#
+# Format:  surface <TAB> expected_analysis <TAB> dialect
+#   dialect ∈ {both, gan, shaanxi}
+# A test PASSES if the analyser for that dialect returns the expected analysis
+# among its readings. Lines starting with # and blank lines are ignored.
+#
+# Every entry here is something we are ABSOLUTELY CERTAIN of: either a closed-
+# class form from the documented grammar (Russian Wikipedia / Имазов 1993 /
+# Драгунов 1940) or a form attested with its gloss in the trilingual parallel
+# corpus. No speculative entries.
+# ============================================================================
+
+# ---- Personal pronouns (Wikipedia: Местоимения, Имазов 1993) ----
+ни	ни<prn><pers><p2><sg>	both
+та	та<prn><pers><p3><sg>	both
+ниму	ниму<prn><pers><p2><pl>	both
+вә	вә<prn><pers><p1><sg>	gan
+вәму	вәму<prn><pers><p1><pl>	gan
+ңә	ңә<prn><pers><p1><sg>	shaanxi
+ңәму	ңәму<prn><pers><p1><pl>	shaanxi
+
+# ---- Possessive with -ди (的) ----
+ниди	ни<prn><pers><p2><sg><px>	both
+тади	та<prn><pers><p3><sg><px>	both
+вәди	вә<prn><pers><p1><sg><px>	gan
+
+# ---- Demonstratives & interrogatives ----
+җыгә	җыгә<prn><dem>	both
+нагә	нагә<prn><dem>	both
+са	са<prn><itg>	both
+сый	сый<prn><itg>	both
+
+# ---- Copula (是): the core dialect contrast ----
+сы	сы<cop>	gan
+шы	шы<cop>	shaanxi
+
+# ---- Animate plural -му (們) ----
+жынму	жын<n><an><t1><pl>	both
+жын	жын<n><an><t1><sg>	both
+
+# ---- Verbal aspect particles (Драгунов 1940; folk-tale corpus) ----
+# 'чы' 吃 "eat" appears with these in the parallel data
+чы	чы<vblex><t1>	both
+чыли	чы<vblex><t1><pst>	both
+чыдини	чы<vblex><t1><prog>	both
+# 'фә' 説 "say"
+фә	фә<vblex>	both
+фәли	фә<vblex><pst>	both
+
+# ---- Adjective superlative/elative -дихын (得很) [Имазов 1982] ----
+да	да<adj>	both
+дадихын	да<adj><sup>	both
+
+# ---- Numeral + classifier compound ----
+сангә	сан<num><cls>	both
+йигә	йи<num><cls>	both
+
+# ---- Bare numerals & classifiers ----
+сан	сан<num>	both
+гә	гә<cls>	both
+
+# ---- Particles (closed class, documented) ----
+ба	ба<part>	both
+ги	ги<post>	both
+дэ	дэ<cnjcoo>	both
+
+# ---- Experiential aspect -гуə (過) [Salmi 1984, Chao parts-of-speech list] ----
+чыгуә	чы<vblex><t1><exp>	both
+зугуә	зу<vblex><exp>	both
+
+# ---- Localizers [Salmi 3.1.2; disyllabic take optional -ди] ----
+либян	либян<loc>	both
+либянди	либян<loc><gen>	both
+
+# ---- Shaanxi dialect forms (Salmi/Janshansin 1968) ----
+ңай	ңай<prn><pers><p1><pl>	shaanxi
+гуә	гуә<cls>	shaanxi
+
+# ---- Sentence-initial capitalization (case-folding transducer) ----
+# Capitalized forms must analyse identically to their lowercase counterparts.
+Та	та<prn><pers><p3><sg>	both
+Тади	та<prn><pers><p3><sg><px>	both
+Жын	жын<n><an><t1><sg>	both
+Чыли	чы<vblex><t1><pst>	both
+
+# ---- Dictionary-verified entries (Yanshansin 2009, with Russian glosses) ----
+базар	базар<n><nn><t1>	both
+ахун	ахун<n><an><t1><sg>	both
+банфа	банфа<n><nn><t3>	both
+бифон	бифон<n><nn><t2>	both
+бохў	бохў<vblex><t2>	both
+
+# ---- Dictionary batch 2 (Yanshansin В-Җ, verified glosses) ----
+дунву	дунву<n><nn><t3>	both
+вонфа	вонфа<n><nn><t1>	both
+дифон	дифон<n><nn><t3>	both
+гунжын	гунжын<n><an><t1><sg>	both
+
+# ---- Dictionary batch 3 (Yanshansin В-Г, head-noun POS) ----
+гунхэгуй	гунхэгуй<n><nn>	both
+гўнён	гўнён<n><an><t1><sg>	both
+голу	голу<n><nn><t1>	both
+гуэгун	гуэгун<n><nn><t2>	both
+
+# ---- Dictionary batch 4 (Yanshansin З-И-Й-К, local-PDF extraction) ----
+задан	задан<n><nn><t3>	both
+җятўзы	җятўзы<n><an><t1><sg>	both
+җящя	җящя<n><nn><t1>	both
+заҗы	заҗы<n><nn><t1>	both
+
+# ---- Tonal homograph disambiguation (the payoff of the tone feature) ----
+# задё is three different verbs distinguished only by tone (高 high-level vs
+# rising vs falling): высосать / загородить / взорвать. The analyser returns
+# all three; the gold test checks the tone-1 reading is present.
+задё	задё<vblex><t1>	both
+
+# ---- Dictionary batch 5 (letters Е-Ж, Л-Я; completes the alphabet) ----
+наван	наван<n><nn><t1>	both
+текуй	текуй<n><nn><t1>	both
+дасы	дасы<vblex><t2>	both
+
+# ---- Locative clitic ни (裡); validates the noun+loc morphotactics ----
+җяни	җя<n><nn><t1><loc>	both
+хонзыни	хонзы<n><nn><t3><loc>	both
+
+# ---- Predicative adjective + durative (熱底呢 "is hot") ----
+жәдини	жә<adj><prog>	both
+
+# ---- Proper-noun inflection (genitive -ди, collective -жынму) ----
+самарияди	самария<np><gen>	both
+грекжынму	грек<np><pl>	both
+
+# ---- Locative -шон (上) on nouns [Имазов 1982] ----
+фушон	фу<n><nn><loc>	both
+дезышон	дезы<n><nn><t2><loc>	gan
+# ---- Comparative degree -щер [Имазов 1982] ----
+дащер	да<adj><comp>	both
+
+# ---- Prohibitive negator бә (叵/嫑) [Цунвазо 1949] ----
+бә	бә<neg>	both
