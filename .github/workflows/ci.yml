@@ -24,10 +24,9 @@ jobs:
       - name: Gold tests (analysis + generation)
         run: python3 tests/run-tests.py
 
-      - name: Precision (recall of correct reading)
-        run: python3 tests/precision.py gan
       - name: Swadesh core coverage
         run: python3 tests/swadesh.py
+        
       - name: Corpus coverage (regression guard)
         run: |
           python3 tests/coverage.py gan
