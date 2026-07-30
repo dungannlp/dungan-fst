@@ -1,0 +1,8 @@
+! ============================================================================
+! twol/capitalization.twol — sentence-initial capital handling
+!
+! NOTE: kept for reference. The actual case-folding is done with a small
+! xfst/regex transducer (see Makefile target *.automorf.hfst) because a
+! flag-free uppercase->lowercase mapping on the analysis side is cleaner as a
+! composed regex than as two-level rules. This file documents the intent.
+! ============================================================================

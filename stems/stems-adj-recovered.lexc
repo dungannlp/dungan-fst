@@ -1,0 +1,104 @@
+! ============================================================================
+! stems/stems-adj-recovered.lexc
+!
+! Adjective readings recovered from Yanshansin's dictionary
+!
+! WHY THIS FILE EXISTS
+! --------------------
+! Part of speech in stems-yanshansin.lexc was derived automatically from the
+! Russian gloss. The heuristic keys on the gloss's morphological shape, and it
+! systematically fails on two classes of entry:
+!
+!   (a) entries whose gloss is a bare Russian adjective but whose Dungan
+!       headword was assigned N-NN / N-AN because the *illustrative phrase*
+!       following the gloss is nominal
+!         e.g.  хи:хи  T1-N-NN ;  ! чёрный; хи кўзы черные брюки
+!       'хи' is 黑 "black", an adjective, not a noun;
+!
+!   (b) adjectives that are Cyrillic homographs of a numeral or a verb, where
+!       the other reading won the slot
+!         бый  白 "white"  vs  бый 百 "hundred"  (filed Num)
+!         го   高 "high"   vs  го  告 "complain" (filed V)
+!         җин  緊 "tight"  vs  җин 京/金        (filed N-NN)
+!
+! Because Dungan is isolating and conversion is pervasive, the fix here is
+! ADDITIVE: the original reading is kept and an <adj> reading is added
+! alongside it. Nothing is removed or reclassified, so correct
+! analysis is lost; the change can only add readings.
+!
+! SELECTION CRITERIA (deliberately conservative)
+! ----------------------------------------------
+! An entry is included only if all of the following hold:
+!   * its gloss's first sense is a bare Russian qualitative adjective;
+!   * the Dungan stem is short and underived (no fused attributive -ди, no
+!     already-derived -щер, no -зы/-р nominaliser);
+!   * the adjective is gradable — relational adjectives (горный "mountain-",
+!     двоюродный "cousin-", ежегодный "annual", избирательный "electoral",
+!     квадратный "square"), participials (гофрированный, выгнутый) and
+!     demonstratives (этакий) are excluded, since degrees do not apply to them;
+!   * the gloss does not in fact denote a person (портной "tailor", жребий
+!     "lot", умный человек) — those are nouns.
+!
+! Entries marked [attested] are ones where Yanshansin's own illustrative
+! material already shows the degree form, so the adjectival status is
+! confirmed by the source rather than inferred:
+!   ландихын, линщиндихын, мондихын, нандихын, нондихын, дидондихын,
+!   җешыдихын, ниндихын, хуондихын.
+!
+! 42 stems. Tone class is carried over unchanged from the source entry.
+! ============================================================================
+
+LEXICON AdjRecovered
+
+! ---- (b) homographs whose adjective reading was lost to another POS --------
+бый:бый              T2-Adj ;   ! 白 "white"    (cf. бый 百 "hundred", Num)
+го:го                T1-Adj ;   ! 高 "high"     (cf. го 告 "complain", V)
+җин:җин              T3-Adj ;   ! 緊 "tight"    (cf. җин 京/金, N-NN)
+
+! ---- (a) qualitative adjectives filed as nouns -----------------------------
+! colours and physical properties
+хи:хи                T1-Adj ;   ! чёрный "black"
+хун:хун              T1-Adj ;   ! красный "red"
+лан:лан              T1-Adj ;   ! синий "blue"
+мыйсый:мыйсый          T1-Adj ;   ! серый "grey"
+тўхуон:тўхуон          T2-Adj ;   ! соловый "dun (of a horse)"
+суан:суан             T1-Adj ;   ! кислый "sour"
+щү:щү               T1-Adj ;   ! рыхлый "loose, friable"
+нон:нон              T1-Adj ;   ! вязкий, грязный "sticky, muddy"   [attested]
+нин:нин              T3-Adj ;   ! твердый "hard"                    [attested]
+чу:чу               T3-Adj ;   ! тухлый "rotten"
+җуон:җуон             T2-Adj ;   ! толстый "thick, of large diameter"
+җуон:җуон             T3-Adj ;   ! жирный "fat, greasy"
+
+! evaluative and dispositional
+кун:кун              T3-Adj ;   ! скучный "boring"
+чу:чу               T2-Adj ;   ! некрасивый, безобразный "ugly"
+нанкан:нанкан          T1-Adj ;   ! некрасивый "unsightly"            [attested]
+щётин:щётин           T1-Adj ;   ! спокойный "calm"
+фуза:фуза             T3-Adj ;   ! сложный "complex"
+сыдый:сыдый           T2-Adj ;   ! подходящий "suitable, apt"
+тэган:тэган           T1-Adj ;   ! негодный "useless, no good"
+шущя:шущя             T2-Adj ;   ! подчиненный "subordinate"
+разый:разый           T1-Adj ;   ! согласный, довольный "content, willing"
+йүнйи:йүнйи           T1-Adj ;   ! легкий "easy, light"
+
+! strength and reliability
+дидон:дидон           T1-Adj ;   ! надежный, крепкий "reliable, firm" [attested]
+зычў:зычў             T2-Adj ;   ! надежный "dependable"
+пишы:пишы             T1-Adj ;   ! крепкий "physically strong"
+җешы:җешы             T1-Adj ;   ! крепкий "solid, firm"             [attested]
+җинда:җинда           T3-Adj ;   ! сильный "strong"
+
+! character
+лабуза:лабуза          T1-Adj ;   ! неуживчивый "quarrelsome"
+линщин:линщин          T1-Adj ;   ! чуткий "sensitive, keen"          [attested]
+мон:мон              T1-Adj ;   ! занятый "busy"                    [attested]
+хуон:хуон             T1-Adj ;   ! суетливый "fussy, flustered"      [attested]
+җыщин:җыщин           T1-Adj ;   ! прямодушный, откровенный "candid"
+лилян:лилян           T1-Adj ;   ! опрятный "tidy"
+луйҗуй:луйҗуй          T1-Adj ;   ! неопрятный "untidy"
+мали:мали             T1-Adj ;   ! расторопный, проворный "brisk, nimble"
+щинлин:щинлин          T1-Adj ;   ! способный "able, capable"
+җимин:җимин           T1-Adj ;   ! сообразительный "quick-witted"
+дэдў:дэдў             T2-Adj ;   ! жестокий "cruel"
+щёца:щёца             T2-Adj ;   ! пугливый "skittish"

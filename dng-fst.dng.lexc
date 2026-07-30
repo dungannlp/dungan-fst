@@ -1,0 +1,453 @@
+! ============================================================================
+! Morphological transducer for Dungan [ISO 639-3: dng], a Sinitic (Central
+! Plains Mandarin) language written in Cyrillic.
+!
+! This file contains the SHARED machinery used by every dialect build:
+!   - the Multichar_Symbols tagset
+!   - the Root lexicon (entry point)
+!   - all continuation classes implementing Dungan's thin morphology
+!     (animate plural -му, possessive -ди, verbal aspect, classifier
+!      compounding, adjective intensifier)
+!
+! Dialect-specific STEMS live in stems/stems-common.lexc plus one of
+! stems/stems-gan.lexc or stems/stems-shaanxi.lexc. The Makefile concatenates
+! this file + common + one dialect file before calling hfst-lexc.
+!
+! Sources:
+!   - Morphology/particles: Russian Wikipedia "Дунганский язык"
+!     (Imazov 1993, 林涛 2012, Dragunov 1940, Yanshansin 1968).
+!   - Lexicon coverage: corpus from the Dungan Wikipedia (Wp/dng), the Dungan
+!     Association of Kyrgyzstan literature portal, and trilingual parallel data.
+!
+! Linguistic grounding (see READING-LOG.md for page-level provenance):
+!   - Part-of-speech inventory follows Imazov 1979 (14 classes).
+!   - ASPECT. The five aspect markers below are tagged with practical labels
+!     <pst>/<fut>, but the system is fundamentally ASPECTUAL, not temporal
+!     [Dragunov 1940]: -ли is a "демаркационный пункт" ('demarcation point': change-of-state /
+!     perfective), giving inceptive readings with statives ('came to know',
+!     'became cold') and cessative readings with negation; -ни is PROSPECTIVE
+!     (foreseen action), not a future tense — in conditionals both clauses may
+!     be future yet split -ли (prerequisite) vs -ни (consequent).
+!   - The polyfunctional -ди (genitive / attributive / adverbial) is a
+!     "универсальный служебный элемент" [Tsunvazo 1963; Imazov 1982].
+!   - Adjectives are predicators yet a distinct POS [Dragunov 1952; Zevakhina
+!     2001]; in predicative use they take verbal aspect markers.
+!   - Lexical TONE (t1/t2/t3) resolves the homography left by the toneless
+!     Cyrillic orthography [Polivanov 1937]; tone sandhi and stress déplacement (Polivanov's депласация) are
+!     NOT modelled (would need twol rules over the tone tags).
+!
+! Disciplined non-additions (documented in the literature but NOT corpus-
+! attested here, hence deliberately not modelled, to keep precision high):
+!   - productive diminutive -зы (lexicalised: Tsunvazo 1955; Polivanov 1937 §5);
+!   - ordinal prefixes ту-/ди- (Imazov 1982; corpus has only туйигә once);
+!   - aspect stacking -гуә+-ли and -ли/-ни on adjectives (Dragunov 1940;
+!     Zevakhina 2001; corpus attestations ambiguous → not modelled).
+! ============================================================================
+
+Multichar_Symbols
+
+! ---- Part of speech ----
+%<n%>        ! noun
+%<np%>       ! proper noun
+%<vblex%>    ! lexical verb
+%<adj%>      ! adjective
+%<adv%>      ! adverb
+%<prn%>      ! pronoun
+%<num%>      ! numeral
+%<cnjcoo%>   ! coordinating conjunction
+%<cnjsub%>   ! subordinating conjunction
+%<post%>     ! postposition / localizer
+%<part%>     ! particle
+%<cop%>      ! copula
+%<ij%>       ! interjection
+%<cls%>      ! classifier / measure word
+
+! ---- Pronoun sub-features ----
+%<pers%>     ! personal
+%<dem%>      ! demonstrative
+%<itg%>      ! interrogative
+%<p1%>       ! 1st person
+%<p2%>       ! 2nd person
+%<p3%>       ! 3rd person
+%<sg%>       ! singular
+%<pl%>       ! plural
+%<incl%>     ! inclusive (за-)
+%<px%>       ! possessive (with -ди)
+
+! ---- Nominal features ----
+%<an%>       ! animate (takes plural -му)
+%<nn%>       ! inanimate
+
+! ---- Lexical tone (Gansu 3-tone standard, from Yanshansin dictionary) ----
+! Dungan Cyrillic omits tone in running text, so a bare spelling is tonally
+! ambiguous; the dictionary marks each syllable I/II/III. These tags carry the
+! HEADWORD tone so that same-spelling, same-POS homographs (e.g. за 扎/炸/榨)
+! stay distinct on the analysis side. Motivated by the 1928-1953 Latin
+! orthography, which (following Gwoyeu Romatzyh) could spell tone into the
+! letter string rather than dropping it as Cyrillic does.
+%<t1%>       ! tone I   (yinping in the Gansu standard)
+%<t2%>       ! tone II  (yangping-derived)
+%<t3%>       ! tone III
+
+! ---- Verbal / aspect features ----
+%<pst%>      ! perfective -ли
+%<prog%>     ! progressive / durative -дини, -ди
+%<fut%>      ! prospective / future -ни
+%<exp%>      ! experiential -гуә (過)
+
+%<comp%>     ! comparative -щер (adjective degree)
+%<sup%>      ! superlative / elative -дихын (得很)
+%<neg%>      ! negation (distinct mood marker, see stems-common)
+
+! ---- Localizers / spatial nouns (Salmi: bound monosyllabic, free disyllabic) ----
+%<loc%>      ! localizer
+
+! ---- Derivation / clitic particles ----
+%<gen%>      ! genitive / attributive -ди
+! NOTE: an <advl> "adverbializer / intensifier -дихын" symbol was declared here
+! in earlier versions but never used in any continuation class, so it never
+! reached the compiled transducer. The -дихын intensifier is tagged <sup>
+! (LEXICON AdjDeg). The dead symbol has been removed: declared and reachable
+! tag inventories now coincide at 38.
+
+! ---- Boundary symbols (deleted by twol on the surface) ----
+%>           ! morpheme boundary (plural, classifier compound)
+%+           ! clitic boundary (possessive, aspect, intensifier)
+
+
+! ============================================================================
+! ROOT  —  entry point. POS lexicon names below must match the LEXICON
+! headers in the concatenated stem files.
+! ============================================================================
+
+LEXICON Root
+
+Nouns ;
+NounsExtra ;
+SalmiDict ;
+NounsWik ;
+VerbsWik ;
+AdjWik ;
+AdvWik ;
+NumWik ;
+PropWik ;
+IjWik ;
+CorpusProp ;
+CorpusNoun ;
+ProperNouns ;
+Verbs ;
+VerbsExtra ;
+Adjectives ;
+AdjExtra ;
+AdjRecovered ;
+Adverbs ;
+Negators ;
+Pronouns ;
+Numerals ;
+Classifiers ;
+Conjunctions ;
+Postpositions ;
+LocSalmi ;
+NounsSalmi ;
+VerbsSalmi ;
+AdjSalmi ;
+CorpusProp2 ;
+CorpusNoun2 ;
+CorpusVerb2 ;
+CorpusNoun3 ;
+CorpusProp3 ;
+CorpusAdv3 ;
+CorpusVerb3 ;
+CorpusNoun4 ;
+CorpusMisc4 ;
+NounsYan ;
+NounsAnYan ;
+VerbsYan ;
+AdjYan ;
+AdvYan ;
+NumYan ;
+NounsYan2 ;
+NounsAnYan2 ;
+VerbsYan2 ;
+AdjYan2 ;
+AdvYan2 ;
+NounsYan3 ;
+NounsAnYan3 ;
+VerbsYan3 ;
+AdjYan3 ;
+YanZ_adj_t1 ;
+YanZ_adj_t2 ;
+YanZ_adj_t3 ;
+YanZ_adv_t1 ;
+YanZ_adv_t2 ;
+YanZ_n_t1 ;
+YanZ_n_t2 ;
+YanZ_n_t3 ;
+YanZ_nan_t1 ;
+YanZ_nan_t2 ;
+YanZ_nan_t3 ;
+YanZ_vblex_t1 ;
+YanZ_vblex_t2 ;
+YanZ_vblex_t3 ;
+Yan5_adj_t1 ;
+Yan5_adj_t2 ;
+Yan5_adj_t3 ;
+Yan5_adv_t1 ;
+Yan5_adv_t2 ;
+NamesPlace ;
+NamesPerson ;
+NamesPeople ;
+NamesLoan ;
+NamesExtra ;
+NamesTail ;
+NamesFinal ;
+NamesReligion ;
+Core_t1_NNN ;
+Core_t2_NNN ;
+Core_t3_NNN ;
+Yan5_adv_t3 ;
+Yan5_n_t1 ;
+Yan5_n_t2 ;
+Yan5_n_t3 ;
+Yan5_nan_t1 ;
+Yan5_nan_t2 ;
+Yan5_nan_t3 ;
+Yan5_vblex_t1 ;
+Yan5_vblex_t2 ;
+Yan5_vblex_t3 ;
+Particles ;
+Interjections ;
+
+! Dialect hooks — defined in the concatenated stems-<dialect>.lexc file.
+! Each dialect supplies these three uniquely-named lexicons.
+PronDial ;
+CopulaDial ;
+VerbDial ;
+ClsDial ;
+
+
+! ============================================================================
+! CONTINUATION CLASSES  (the morphology — all dialect-neutral)
+! ============================================================================
+
+! ---- Pronoun possessive ----
+LEXICON PrnPossSlot
+        # ;                       ! bare:  вә<prn><pers><p1><sg>
+%<px%>:%+ди  # ;                  ! poss:  вә<prn><pers><p1><sg><px>  ~ вәди
+
+LEXICON PrnDemEnd
+%<prn%>%<dem%>:  # ;
+
+LEXICON PrnItgEnd
+%<prn%>%<itg%>:  # ;
+
+! ---- Copula ----
+LEXICON Cop
+%<cop%>:  # ;
+
+! ---- Noun: animate (number) ----
+LEXICON N-AN
+%<n%>%<an%>:  N-AN-Num ;
+
+LEXICON N-AN-Num
+%<sg%>:        NounEnd ;          ! жын<n><an><sg>
+%<pl%>:%>му    NounEnd ;          ! жын<n><an><pl>  ~ жынму (人們)
+
+! ---- Noun: inanimate ----
+LEXICON N-NN
+%<n%>%<nn%>:  NounEnd ;
+
+! Shared noun terminal: a noun may end the word, or take the locative clitic
+! ни (裡 "in/at"), which attaches directly to nouns in the corpus
+! (家里 җя-ни "at home", 鍋里 гуә-ни "in the pot", 巷子里 хонзы-ни "in the lane").
+! Modeled as a clitic (%+ boundary, deleted by twol) carrying a <loc> tag, so
+! it round-trips while keeping the standalone postposition ни available too.
+LEXICON NounEnd
+                # ;
+%<loc%>:%+ни    # ;
+! Locative -шон (上 "on, on top of"): дезы-шон "on the plate", бали-шон "on the
+! glass" [Imazov 1982]. Heavily attested in the corpus (җуәзы-шон "on the table",
+! ди-мян-шон "on the ground"). Imazov lists -шон together with -ни among the noun
+! locative endings (отончания -ди, -шон, -ни).
+%<loc%>:%+шон   # ;
+! Genitive / attributive -ди (的) on the common noun. Imazov 1979, pp.78-83 lists
+! -ди among the noun endings alongside the locatives -ни/-шон ("отончания -ди,
+! -шон, -ни") and it is the single most frequent nominal marker in running text
+! (фонзыди "of the house", жынди "of the person"). Originally tried to model
+! only on proper nouns (LEXICON NpEnd) and on the localiser class, which left the
+! common-noun genitive unbuildable and made the surface string -ди unambiguously
+! predicative on nouns. Restoring it here is what makes the genitive/progressive
+! competition on one surface -ди -- the ambiguity the profile measures -- real in
+! the transducer rather than only in the prose description.
+%<gen%>:%+ди    # ;
+! Predicative durative on a noun: in a verb-object compound the aspect clitic
+! lands on the object noun — 寫字底呢 ще зы-дини "is writing (characters)",
+! 放風子底呢 фон фынзы-дини "is flying a kite". Same analytic aspect as on verbs
+! and adjectives, here marking the whole V-O predicate. Semantically the two
+! positions differ [Dragunov 1940, p.32]: with a numeral object, verbal -ли
+! marks completion of the action ('lived three years, then stopped'), but
+! predicative -ли on the object marks completion of the MEASURE while the
+! action may continue ('have been living here three years already') — a
+! perfect of persistent situation.
+%<prog%>:%+дини # ;
+%<prog%>:%+ди   # ;
+! Predicative / modal perfective -ли (哩, Chinese 了₂ 'new situation') on a
+! nominal predicate: 人哩 жын-ли 'became people' (hanzi gloss in the folk_tale
+! corpus: 把三個女子給哩人哩), and with a numeral 三年哩 'three years already' —
+! a perfect of persistent situation, in which predicative -ли marks completion
+! of the MEASURE while the action itself may continue [Dragunov 1940, p.32].
+! The same modal -ли appears on nominal predicates and in age/duration
+! expressions (Та сы-шы-ба-ли 'he is 48'; 50 нянли '50 years') [Salmi 2023,
+! §6.3]. Same analytic treatment as for -дини/-ни above (the clitic lands on
+! the predicate noun).
+%<pst%>:%+ли    # ;
+! Predicative prospective ни (呢) likewise lands on the object noun:
+! 吃羊呢 чы ён-ни "eats sheep", 來客呢 лэ ки-ни "guests will come".
+%<fut%>:%+ни    # ;
+
+! ---- Proper noun ----
+LEXICON Np
+%<np%>:  NpEnd ;
+
+! Proper nouns take the regular genitive -ди (的) and, for groups/peoples,
+! the plural -му (們): 撒馬利亞的 Самария-ди "of Samaria", 希臘人們 грек-жын-му
+! "Greeks". This is the same analytic morphology native nouns use, so every
+! name added also yields its inflected forms for free.
+LEXICON NpEnd
+                # ;
+%<gen%>:%+ди    # ;
+%<pl%>:%+му     # ;
+%<pl%>%<gen%>:%+му%+ди   # ;   ! plural + genitive: -муди
+! Ethnonym collective: X-人們 "the X people" (希臘人們 грек-жын-му "Greeks",
+! 非利士人們 филистим-жын-му "Philistines"). The ethnonym takes 人 жын "person"
+! plus the plural 們 му. The singular X-人 also occurs (назорей-жын "a Nazarene").
+! Each ethnonym form may in turn take the genitive 的 -ди (希臘人們的 грек-жын-му-ди).
+%<sg%>:%+жын    # ;
+%<sg%>%<gen%>:%+жын%+ди   # ;   ! ethnonym singular + genitive: -жынди
+%<pl%>:%+жын%+му  # ;
+%<pl%>%<gen%>:%+жын%+му%+ди  # ;   ! ethnonym collective + genitive: -жынмуди
+
+! ---- Verb: aspect ----
+LEXICON V
+%<vblex%>:  VAspSlot ;
+
+! Aspect particles (Salmi 1984: "nearly every sentence has an aspect particle").
+! The four aspect clitics plus the experiential -гуә (過). Upper side carries the
+! tag; lower side carries the surface particle (boundary deleted by twol).
+! Verbal aspect (five markers). Tags <pst>/<fut> are PRACTICAL LABELS: the
+! opposition is aspectual, not temporal [Dragunov 1940]. -ли = perfective /
+! demarcative (change of state): inceptive with statives (юли "acquired"),
+! cessative with negation ("quit smoking"). -ни = prospective (foreseen
+! action), not future tense. -дини progressive vs -ди stative (short durative).
+! Obligatory in general, but factultative in 8 contexts (negatives, modals,
+! statives, imperatives, nominal/age predicates) [Dragunov 1940].
+LEXICON VAspSlot
+              # ;                  ! bare:  чы<vblex>
+%<pst%>:%+ли      # ;              ! чы<vblex><pst>   ~ чыли   (哩/了) perfective/demarcative
+%<prog%>:%+дини   # ;              ! чы<vblex><prog>  ~ чыдини (底呢) progressive-durative
+%<prog%>:%+ди     # ;              ! чы<vblex><prog>  ~ чыди   (底)   stative (short durative)
+%<fut%>:%+ни      # ;              ! чы<vblex><fut>   ~ чыни   (呢)   prospective (foreseen)
+%<exp%>:%+гуә     # ;              ! чы<vblex><exp>   ~ чыгуә  (過)   experiential
+
+! ---- Adjective: degree ----
+LEXICON Adj
+%<adj%>:  AdjDeg ;
+
+LEXICON AdjDeg
+              # ;                  ! да<adj>
+! Degree of comparison [Imazov 1982]: comparative -щер (го "high" → го-щер
+! "higher"), superlative/elative -дихын 得很 (го → го-дихын "highest / very high").
+! Imazov analyses -дихын as the superlative degree; the standard etymological
+! analysis treats 得很 as an intensifier ("very") introducing a complement of
+! degree; Zevakhina 2001 calls it the "suffix of full predication" (an optional
+! intensifier) — all three coincide on the intensified-predicative reading.
+! Adjectives are predicators yet a distinct POS [Dragunov 1952; Zevakhina 2001];
+! in predicative use they take verbal aspect -дини/-ди (Ни хо-дини ма? "are you
+! well?"). The full verbal range (-ли/-ни) is documented for predicative
+! adjectives [Zevakhina 2001] but is barely attested in our corpus, so it is
+! NOT modelled here (avoids over-generation). Dragunov 1952 distinguishes adj
+! from verb by the tonal pattern in reduplication.
+! Corpus attests both degrees (да-щер "bigger", куан-дихын "very wide", җин-дихын
+! "very tight"). Note that only stems routed through this lexicon can take the
+! degree suffixes; qualitative adjectives that the gloss-based import filed as
+! nouns or as homographs of a numeral/verb (хи, хун, бый, го, җин, ...) were
+! unreachable until stems/stems-adj-recovered.lexc restored their <adj> reading.
+%<comp%>:%+щер   # ;              ! да<adj><comp>  ~ дащер   (comparative)
+%<sup%>:%+дихын  # ;              ! да<adj><sup>   ~ дадихын (得很 superlative/elative)
+%<prog%>:%+дини   # ;              ! жә<adj><prog>  ~ жәдини (熱底呢) "is (now) hot"
+%<prog%>:%+ди     # ;              ! predicative durative, short form
+
+! ---- Adverb ----
+LEXICON Adv
+%<adv%>:  # ;
+
+! ---- Negation particles (preposed proclitics) [Tsunvazo 1949; Калимов 1968] ----
+! Closed class of preposed negators. Cunvazo (1949, "K voprosu o sredstvakh
+! vyrazhenija otricanija") describes the paradigm with examples: бу 不 negates
+! the future/general and strips the future suffix -ни (вуо чни "I will go" → вуо
+! бу чи); мә 沒 negates the past (strips -ли) and present (-дини → -ди, e.g.
+! дзуодини "sits" → мә дзуоди "does not sit"); бә 叵/嫑 is the prohibitive
+! ("don't", imperative only). Because the analyzer is analytic, each negator is a
+! separate token; the stripping of the aspect suffix on the following verb is a
+! syntactic constraint and need not be modelled token-internally.
+LEXICON Neg
+%<neg%>:  # ;
+
+! ---- Numeral (+ optional classifier) ----
+LEXICON Num
+%<num%>:  NumCls ;
+
+LEXICON NumCls
+        # ;                        ! bare numeral
+%<cls%>:%>гә   # ;                ! йи<num><cls> ~ йигә (一個)
+%<cls%>:%>ба   # ;                ! + 把
+%<cls%>:%>җон  # ;                ! + 張
+%<cls%>:%>тё   # ;                ! + 條
+%<cls%>:%>бын  # ;                ! + 本
+
+! ---- Classifier (standalone) ----
+LEXICON Cls
+%<cls%>:  # ;
+
+! ---- Postposition / localizer ----
+LEXICON Post
+%<post%>:  # ;
+
+! ---- Localizer (Salmi: disyllabic localizers take optional -ди) ----
+LEXICON Loc
+%<loc%>:  LocDi ;
+
+LEXICON LocDi
+        # ;                        ! либян<loc>
+%<gen%>:%+ди  # ;                 ! либян<loc><gen> ~ либянди
+
+! ---- Conjunctions ----
+LEXICON CnjCoo
+%<cnjcoo%>:  # ;
+
+LEXICON CnjSub
+%<cnjsub%>:  # ;
+
+! ---- Particles ----
+LEXICON PartBa
+%<part%>:  # ;
+
+LEXICON PartGi
+%<post%>:  # ;
+
+LEXICON PartGen
+%<part%>%<gen%>:  # ;
+
+LEXICON PartLi
+%<part%>%<pst%>:  # ;
+
+LEXICON PartNi
+%<part%>:  # ;
+
+! ---- Interjection ----
+LEXICON Ij
+%<ij%>:  # ;
+
+! ============================================================================
+! END of morphotactics. Stems follow from the concatenated stem files.
+! ============================================================================

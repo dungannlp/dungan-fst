@@ -1,0 +1,63 @@
+! ============================================================================
+! dng-fst.dng.twol
+! Two-level morphophonological rules for Dungan [dng]
+!
+! Dungan is analytic with virtually no morphophonemic alternation, so this
+! rule set is intentionally minimal. Its main jobs are:
+!   (1) realize the morpheme-boundary markers (%> and %+) as the empty string
+!       on the surface, so that stem+particle concatenations surface cleanly;
+!   (2) document the one phonological constraint noted in the Wikipedia
+!       grammar: the ў /u/ vs у /əu/ contrast and labial-context behaviour
+!       (kept as a commented constraint, since the orthography is already
+!       lexicalized in our stems).
+!
+! Source of rules: Russian Wikipedia "Дунганский язык" (Salmi 2007; 林涛 2012).
+! ============================================================================
+
+Alphabet
+ ! Cyrillic letters used by Dungan
+ А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
+ а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я
+ ! Dungan-specific Cyrillic letters
+ Ә ә Ң ң Җ җ Ў ў Ү ү
+ ! Boundary markers: deleted on the surface
+ %>:0 %+:0
+ ;
+
+Sets
+ Vowel = а е ё и о у ы э ю я ә ў ү ;
+ Cons  = б в г д ж з й к л м н п р с т ф х ц ч ш щ ң җ ;
+ Labial = б п м ф в ;
+
+Definitions
+
+Rules
+
+! ----------------------------------------------------------------------------
+! Rule 1: The animate-plural boundary %> deletes on the surface.
+!   жын%>му  ->  жынму   (人們)
+! ----------------------------------------------------------------------------
+"Plural boundary deletion"
+%>:0 <=> _ ;
+
+! ----------------------------------------------------------------------------
+! Rule 2: The clitic boundary %+ deletes on the surface.
+!   чы%+ли   ->  чыли    (吃哩)
+!   ни%+ди   ->  ниди    (你的)
+! These particles are written as separate orthographic units in some texts and
+! joined in others; in this transducer we model them as cliticised forms whose
+! boundary is invisible on the surface string.
+! ----------------------------------------------------------------------------
+"Clitic boundary deletion"
+%+:0 <=> _ ;
+
+! ----------------------------------------------------------------------------
+! Rule 3 (DOCUMENTED, currently vacuous): ў vs у after labials.
+!   Per Salmi 2007 / 林涛 2012: after labial consonants (б п м ф в) the close
+!   back vowel /u/ is written у, not ў. Example: бу 不 (/pu/, not *бў),
+!   фу 服 (/fu/, not *фў). Schematically, if active: ...б%>ў... -> ...бу...
+!   Our lexicon stores already-correct orthographic stems, so no rewriting is
+!   required; recorded for future productive suffixation.
+! ----------------------------------------------------------------------------
+! "u after labial is written u not w"
+! ў:у <=> Labial: _ ;

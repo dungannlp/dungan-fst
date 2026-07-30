@@ -1,0 +1,35 @@
+# ============================================================================
+# tests/gold-generation.txt — GOLD-STANDARD generation tests
+#
+# Format:  analysis <TAB> expected_surface <TAB> dialect
+# A test PASSES if the generator for that dialect produces expected_surface
+# among its outputs. Verifies the transducer round-trips (analyse <-> generate).
+# Only forms we are certain of.
+# ============================================================================
+
+жын<n><an><t1><pl>	жынму	both
+жын<n><an><t1><sg>	жын	both
+вә<prn><pers><p1><sg><px>	вәди	gan
+ни<prn><pers><p2><sg><px>	ниди	both
+та<prn><pers><p3><sg><px>	тади	both
+чы<vblex><t1><pst>	чыли	both
+да<adj><sup>	дадихын	both
+сан<num><cls>	сангә	both
+сы<cop>	сы	gan
+шы<cop>	шы	shaanxi
+ңә<prn><pers><p1><sg>	ңә	shaanxi
+чы<vblex><t1><exp>	чыгуә	both
+либян<loc><gen>	либянди	both
+
+# ---- Tone feature round-trips through morphology ----
+задё<vblex><t3><pst>	задёли	both
+җятўзы<n><an><t1><pl>	җятўзыму	both
+
+# ---- Locative round-trips ----
+җя<n><nn><t1><loc>	җяни	both
+
+# ---- Predicative adjective durative round-trip ----
+жә<adj><prog>	жәдини	both
+
+# ---- Proper-noun genitive round-trip ----
+муса<np><gen>	мусади	both

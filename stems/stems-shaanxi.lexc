@@ -1,0 +1,51 @@
+! ============================================================================
+! stems/stems-shaanxi.lexc  —  SHAANXI-DIALECT STEMS (4-tone)
+!
+! Concatenated as: root morphotactics + stems-common + THIS file.
+! Defines ONLY the dialect-hook lexicons referenced from Root:
+! PronDial, CopulaDial, VerbDial — holding the forms specific to Shaanxi.
+! This is the variety used by the Dungan Wikipedia corpus.
+! Source: Russian Wikipedia "Дунганский язык" (林涛 2012; Драгунов 1937):
+!   copula шы; 1sg ңә / 1pl ңәму; possessive ңэ (俺); 3pl ана/тана.
+! ============================================================================
+
+! ---- Pronouns specific to Shaanxi ----
+! NB: written Shaanxi Dungan (the Wikipedia corpus) uses the literary-standard
+! 1sg вә / 1pl вәму alongside (or instead of) the colloquial ңә / ңәму — in the
+! corpus вә occurs many times while ңә does not occur at all. Both are therefore
+! recognised by the Shaanxi analyser; ңә is the spoken Shaanxi variant.
+LEXICON PronDial
+вә:вә        PrnPersSg1 ;     ! 我 "I" (literary standard, used in written Shaanxi)
+вәму:вәму    PrnPersPl1 ;     ! 我們 "we" (literary standard, used in written Shaanxi)
+ңә:ңә        PrnPersSg1 ;     ! 我 "I" (Shaanxi colloquial)
+ңэ:ңэ        PrnPersSg1px ;   ! 俺 "my" (Shaanxi possessive)
+ңәму:ңәму    PrnPersPl1 ;     ! 我們 "we" (Shaanxi colloquial)
+ңай:ңай      PrnPersPl1 ;     ! 我們 "we" (Shaanxi, Salmi/Janshansin 1968)
+ана:ана      PrnPersPl3 ;     ! 阿拿 "they" (Shaanxi)
+тана:тана    PrnPersPl3 ;     ! 他拿 "they" (Shaanxi)
+таму:таму    PrnPersPl3 ;     ! 他們 "they" (also used)
+
+! ---- Shaanxi classifier variants (Salmi: гә -> гуә, гы) ----
+LEXICON ClsDial
+гуә:гуә      Cls ;            ! 個 generic classifier (Shaanxi)
+гы:гы        Cls ;            ! 個 generic classifier (Shaanxi variant)
+
+LEXICON PrnPersSg1
+%<prn%>%<pers%>%<p1%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersSg1px
+%<prn%>%<pers%>%<p1%>%<sg%>%<px%>:  # ;
+
+LEXICON PrnPersPl1
+%<prn%>%<pers%>%<p1%>%<pl%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl3
+%<prn%>%<pers%>%<p3%>%<pl%>:  PrnPossSlot ;
+
+! ---- Copula: Shaanxi шы (是) ----
+LEXICON CopulaDial
+шы:шы        Cop ;            ! 是 "to be" (Shaanxi)
+
+! ---- Shaanxi-specific verb form ----
+LEXICON VerbDial
+вый:вый      V ;              ! "to be, become" (Shaanxi; cf. Gansu ви)

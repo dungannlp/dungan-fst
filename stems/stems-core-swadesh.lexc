@@ -1,0 +1,15 @@
+
+! ---- Core Swadesh vocabulary (cross-checked against the ASJP wordlist, 
+!      CC-BY, Janšansin & Šinlo 2008 Russian-Dungan dict). These basic body-
+!      part / nature words were absent and are confirmed from the Yanshansin
+!      dictionary; spellings and tones taken from there. ----
+
+LEXICON Core_t1_NNN
+щигэзы:щигэзы        T1-N-NN ;   ! 膝蓋子 knee
+ганзы:ганзы         T1-N-NN ;   ! 肝子 liver
+
+LEXICON Core_t2_NNN
+тэён:тэён          T2-N-NN ;   ! 太陽 sun
+
+LEXICON Core_t3_NNN
+езы:езы           T3-N-NN ;   ! 葉子 leaf

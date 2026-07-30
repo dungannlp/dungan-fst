@@ -1,0 +1,185 @@
+! ============================================================================
+! Proper nouns and established loanwords.
+!
+! These are NOT in the Yanshansin dictionary (a dictionary of native Sino-Dungan
+! vocabulary) — they are names, places, and cultural/religious borrowings that
+! appear in encyclopedic and scriptural Dungan text. Because proper nouns route
+! through NpEnd, each lemma here also yields its genitive (-ди 的) and plural
+! (-му 們) forms automatically, so e.g. адding 'грек' also covers 'грекжынму'
+! (Greeks) and 'самария' covers 'самарияди' (of Samaria).
+!
+! Forms are lowercase: Dungan running text lowercases proper nouns, and the
+! sentence-initial capitalisation transducer (caps.hfst) handles capitals.
+! Evidence of need: the Wp/dng Wikipedia corpus (geographic + scriptural).
+! ============================================================================
+
+! ---- Countries / regions / cities ----
+LEXICON NamesPlace
+америка:америка        Np ;   ! America
+иордан:иордан          Np ;   ! Jordan (river/country)
+персия:персия          Np ;   ! Persia
+либан:либан            Np ;   ! Lebanon
+галилея:галилея        Np ;   ! Galilee
+галилэя:галилэя        Np ;   ! Galilee (variant)
+египет:египет          Np ;   ! Egypt
+дагестан:дагестан      Np ;   ! Dagestan
+иудея:иудея            Np ;   ! Judea
+самария:самария        Np ;   ! Samaria
+греция:греция          Np ;   ! Greece
+ычуан:ычуан            Np ;   ! Sichuan (四川)
+китай:китай            Np ;   ! China (Russian-form name)
+русия:русия            Np ;   ! Russia
+казахстан:казахстан    Np ;   ! Kazakhstan
+кыргызстан:кыргызстан  Np ;   ! Kyrgyzstan
+бишкек:бишкек          Np ;   ! Bishkek
+москва:москва          Np ;   ! Moscow
+! -- attested in the Wp/dng corpus (biblical geography + world/Chinese places) --
+палестина:палестина    Np ;   ! Palestine
+иерусалим:иерусалим    Np ;   ! Jerusalem
+вавилон:вавилон        Np ;   ! Babylon
+перея:перея            Np ;   ! Perea (region beyond the Jordan; tetrarchy of Herod Antipa)
+индия:индия            Np ;   ! India
+азия:азия              Np ;   ! Asia
+ўзбекистон:ўзбекистон  Np ;   ! Uzbekistan
+канада:канада          Np ;   ! Canada
+аляска:аляска          Np ;   ! Alaska
+гавайи:гавайи          Np ;   ! Hawaii
+сычуан:сычуан          Np ;   ! 四川 Sichuan
+хәбый:хәбый            Np ;   ! 河北 Hebei
+хыйлунҗён:хыйлунҗён    Np ;   ! 黑龙江 Heilongjiang
+щёнгон:щёнгон          Np ;   ! 香港 Hong Kong
+диҗунхэ:диҗунхэ        Np ;   ! 地中海 the Mediterranean Sea (attested via диҗунхэ-ди)
+лойуан:лойуан          Np ;   ! 洛阳 Luoyang
+кахирә:кахирә          Np ;   ! Cairo (القاهرة)
+хуонхә:хуонхә          Np ;   ! 黄河 the Yellow River
+бохэ:бохэ              Np ;   ! 渤海 the Bohai Sea
+чонҗён:чонҗён          Np ;   ! 長江 the Yangtze River
+чинхуа:чинхуа          Np ;   ! 清華 Tsinghua (清華大學, context: "Tsinghua University")
+
+! ---- Personal names (biblical / historical / common) ----
+LEXICON NamesPerson
+ирод:ирод              Np ;   ! Herod
+муса:муса              Np ;   ! Musa / Moses
+эван:эван              Np ;   ! Ivan/John (form)
+адан:адан              Np ;   ! Adam
+ибращим:ибращим        Np ;   ! Ibrahim / Abraham
+исмаил:исмаил          Np ;   ! Ismail / Ishmael
+исраил:исраил          Np ;   ! Israel
+илияс:илияс            Np ;   ! Ilyas / Elijah
+исхар:исхар            Np ;   ! Issachar
+агриппа:агриппа        Np ;   ! Agrippa
+антипа:антипа          Np ;   ! Antipas
+вида:вида              Np ;   ! David (Dungan form)
+йихия:йихия            Np ;   ! Yahya / John
+матфей:матфей          Np ;   ! Matthew (the Evangelist)
+архелай:архелай        Np ;   ! Archelaus (Herod Archelaus, ethnarch of Judea)
+ясыр:ясыр              Np ;   ! Yasyr (given name; the poet Ya. Shyvaza)
+филипп:филипп          Np ;   ! Philip (apostle / Herod Philip)
+марк:марк              Np ;   ! Mark (the Evangelist)
+лука:лука              Np ;   ! Luke (the Evangelist)
+фамәр:фамәр            Np ;   ! Фамарь / Tamar (Matthew's genealogy)
+щыҗинпин:щыҗинпин      Np ;   ! 习近平 Xi Jinping
+
+! ---- Peoples / ethnonyms (take -жынму "people-plural") ----
+LEXICON NamesPeople
+грек:грек              Np ;   ! Greek
+араб:араб              Np ;   ! Arab
+лебит:лебит            Np ;   ! Levite
+филистим:филистим      Np ;   ! Philistine
+халдей:халдей          Np ;   ! Chaldean
+хеттей:хеттей          Np ;   ! Hittite
+вурус:вурус            Np ;   ! Russian (people)
+
+! ---- Religious / cultural loanwords (common nouns, take -му plural / -ди) ----
+LEXICON NamesLoan
+апостол:апостол        N-AN ;   ! apostle (animate — a person)
+диакон:диакон          N-AN ;   ! deacon (animate)
+динарий:динарий        N-NN ;   ! denarius (coin)
+кодрант:кодрант        N-NN ;   ! quadrans (coin)
+инҗил:инҗил            N-NN ;   ! Injil / Gospel
+китаб:китаб            N-NN ;   ! book / scripture (kitab)
+ефод:ефод              N-NN ;   ! ephod
+зилот:зилот            N-AN ;   ! Zealot (animate)
+август:август          N-NN ;   ! August (month)
+зэбур:зэбур            N-NN ;   ! Zabur / the Psalms (scripture)
+торати:торати          N-NN ;   ! Тэурат / the Torah (attested form торати; completes Инҗил/Зэбур/Торат)
+
+! ---- Additional names/loanwords (closing the remaining coverage tail) ----
+LEXICON NamesExtra
+антиох:антиох          Np ;   ! Antiochus
+викибыйкуә:викибыйкуә      N-NN ;   ! Wikipedia (Dungan)
+жынминбы:жынминбы        N-NN ;   ! renminbi (人民幣)
+йүбилей:йүбилей         N-NN ;   ! jubilee
+кегат:кегат           Np ;   ! Kehath
+кнаан:кнаан           Np ;   ! Canaan
+левий:левий           Np ;   ! Levi
+лепта:лепта           N-NN ;   ! lepton (coin)
+лёнин:лёнин           Np ;   ! Lenin
+малхи:малхи           Np ;   ! Malchi
+манна:манна           N-NN ;   ! manna
+модеин:модеин          Np ;   ! Modein
+мэсих:мэсих           N-NN ;   ! Messiah
+назорей:назорей         Np ;   ! Nazorean
+онияс:онияс           Np ;   ! Onias
+пасха:пасха           N-NN ;   ! Passover
+пилат:пилат           Np ;   ! Pilate
+рим:рим             Np ;   ! Rome
+рух:рух             N-NN ;   ! spirit (Ruh)
+сарепта:сарепта         Np ;   ! Zarephath
+саул:саул            Np ;   ! Saul
+сидон:сидон           Np ;   ! Sidon
+симиён:симиён          Np ;   ! Simeon
+сихем:сихем           Np ;   ! Shechem
+содом:содом           Np ;   ! Sodom
+тир:тир             Np ;   ! Tyre
+фарисей:фарисей         Np ;   ! Pharisee
+финикия:финикия         Np ;   ! Phoenicia
+хасмоней:хасмоней        Np ;   ! Hasmonean
+хуш:хуш             Np ;   ! Cush/Kush
+шилох:шилох           Np ;   ! Shiloh
+ына:ына             Np ;   ! Dinah(?)
+яков:яков            Np ;   ! Jacob
+ярабиам:ярабиам         Np ;   ! Jeroboam
+
+
+! ---- Final tail: remaining proper nouns and one native word (皇上 emperor) ----
+LEXICON NamesTail
+хуаншон:хуаншон      N-NN ;   ! 皇上 emperor
+хәҗунгуй:хәҗунгуй    Np ;   ! 合眾國 United States
+ванлы:ванлы          Np ;   ! 萬曆 Wanli (era/emperor)
+даахун:даахун        Np ;   ! 大漢 Dahan (a name)
+кәчён:кәчён          Np ;   ! 可城 (a personal name)
+мансузы:мансузы      Np ;   ! (a personal name)
+ванахун:ванахун      Np ;   ! (a personal name)
+ибращимэ:ибращимэ    Np ;   ! Ibrahim (variant spelling)
+китабу:китабу        N-NN ;   ! Kitabu (variant of kitab)
+яир:яир              Np ;   ! Jair
+ябиш:ябиш            Np ;   ! Jabesh
+
+! ---- Final sweep: remaining proper nouns and religious terms ----
+LEXICON NamesFinal
+россия:россия        Np ;   ! Russia (Russian-form)
+синай:синай          Np ;   ! Sinai
+тиберий:тиберий      Np ;   ! Tiberius
+турция:турция        Np ;   ! Turkey
+ханаан:ханаан        Np ;   ! Canaan (variant)
+хорив:хорив          Np ;   ! Horeb
+шывазы:шывазы        Np ;   ! Shivaza (Dungan writer)
+щинҗён:щинҗён        Np ;   ! 新疆 Xinjiang
+шэнщы:шэнщы          Np ;   ! 陝西 Shaanxi (province)
+җинпин:җинпин        Np ;   ! (personal name, e.g. Xi Jinping)
+лянбон:лянбон        Np ;   ! Lebanon (variant)
+ягўбэ:ягўбэ          Np ;   ! Jacob (variant)
+саддукей:саддукей    Np ;   ! Sadducee
+синагога:синагога    N-NN ;   ! synagogue
+шекель:шекель        N-NN ;   ! shekel
+херубим:херубим      N-AN ;   ! cherub/cherubim
+христиан:христиан    Np ;   ! Christian (base for -жё compounds)
+җидў:җидў            Np ;   ! Jewish (base for -жё compounds)
+ханзў:ханзў          Np ;   ! 漢族 Han Chinese
+харам:харам          N-NN ;   ! haram/temple
+
+! ---- Religion compounds (X教 "X-ism/religion") ----
+LEXICON NamesReligion
+христианҗё:христианҗё    Np ;   ! 基督教 Christianity
+җидўҗё:җидўҗё          Np ;   ! 猶太教 Judaism

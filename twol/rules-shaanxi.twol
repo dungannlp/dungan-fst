@@ -1,0 +1,51 @@
+! ============================================================================
+! twol/rules-shaanxi.twol  —  SHAANXI two-level rules
+!
+! Complete rule set for the Shaanxi build: the shared boundary-deletion rules
+! PLUS Shaanxi-specific morphophonology. Used instead of the common twol when
+! building the Shaanxi analyser.
+!
+! Shaanxi-specific phenomena (Russian Wikipedia "Дунганский язык", 林涛 2012;
+! Драгунов 1937):
+!   - historical мягкие дь-/ть- (/tj/, /tʰj/) -> җь-/чь- (/tɕ/, /tɕʰ/)
+!   - historical /ŋ/ initial often retained where Gansu/Beijing lost it
+!
+! BUT! These are largely lexicalized in our stems, so the alternation rule is
+! recorded as a documented (currently vacuous) constraint, mirroring how the
+! common file handles the ў/у case.
+! ============================================================================
+
+Alphabet
+ А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
+ а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я
+ Ә ә Ң ң Җ җ Ў ў Ү ү
+ %>:0 %+:0
+ ;
+
+Sets
+ Vowel = а е ё и о у ы э ю я ә ў ү ;
+ Cons  = б в г д ж з й к л м н п р с т ф х ц ч ш щ ң җ ;
+
+Rules
+
+! ---- Shared: morpheme/clitic boundary deletion (same as common) ----
+! Rule S1: animate-plural boundary %> deletes on the surface.
+!   жын%>му  ->  жынму   (人們)
+"Plural boundary deletion (Shaanxi)"
+%>:0 <=> _ ;
+
+! Rule S2: clitic boundary %+ deletes on the surface.
+!   чы%+ли   ->  чыли    (吃哩)
+!   ни%+ди   ->  ниди    (你的)
+"Clitic boundary deletion (Shaanxi)"
+%+:0 <=> _ ;
+
+! ---- Shaanxi-only (DOCUMENTED, vacuous): дь/ть -> җь/чь palatalization ----
+! Per 林涛 2012: in Shaanxi Dungan the historical soft initials дь- /tj-/,
+! ть- /tʰj-/ surface as җь- /tɕ-/, чь- /tɕʰ-/. Illustration (schematically, at
+! the syllable level): underlying дьа -> surface (Shaanxi) җьа; тьи -> чьи.
+! Our lexicon stores the already-palatalized Shaanxi forms, so no rewriting is
+! needed at this stage. Recorded here for when productive morphology introduces
+! the underlying form.
+! "dj palatalizes to dzj in Shaanxi"
+! д:җ <=> _ ь: ;

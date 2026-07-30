@@ -1,0 +1,10 @@
+# IDE
+.idea/
+.vscode/
+
+# HFST build artefacts
+*.hfst
+
+# Python
+__pycache__/
+*.pyc

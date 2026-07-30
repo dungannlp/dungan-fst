@@ -1,0 +1,364 @@
+! ============================================================================
+! stems/stems-common.lexc  —  DIALECT-NEUTRAL STEMS
+!
+! Vocabulary shared by all Dungan dialects. Concatenated after the root
+! morphotactics file and before exactly one stems-<dialect>.lexc file.
+!
+! The dialect files ADD to the POS lexicons opened here (Nouns, Verbs, ...)
+! and supply the forms that differ between Gansu and Shaanxi (copula,
+! 1sg/1pl pronouns, a few finals). Everything regular lives here.
+! ============================================================================
+
+! ============================================================================
+! PRONOUNS  (dialect-neutral members; вә/ңә-paradigm split lives in dialect files)
+! ============================================================================
+
+LEXICON Pronouns
+
+! --- Personal: 2nd/3rd person are shared across dialects ---
+ни:ни        PrnPersSg2 ;     ! 你 "you (sg)"
+та:та        PrnPersSg3 ;     ! 他 "he/she/it"
+ниму:ниму    PrnPersPl2 ;     ! 你們 "you (pl)"
+за:за        PrnPersPl1i ;    ! 咱 "we (incl.)"
+заму:заму    PrnPersPl1i ;    ! 咱們 "we (incl.)"
+
+! --- Demonstratives (shared) ---
+җыгә:җыгә     PrnDemEnd ;      ! 這個 "this"
+җәгә:җәгә     PrnDemEnd ;      ! 這個 "this" (variant)
+нагә:нагә     PrnDemEnd ;      ! 那個 "that"
+ныйгә:ныйгә   PrnDemEnd ;      ! 那個 "that" (variant)
+
+! --- Interrogatives (shared) ---
+са:са        PrnItgEnd ;      ! 啥 "what"
+сый:сый      PrnItgEnd ;      ! 誰 "who"
+зуа:зуа      PrnItgEnd ;      ! 做啥 "why"
+зали:зали    PrnItgEnd ;      ! 咋哩 "how"
+
+! Person/number sub-entries that route shared pronouns into the possessive slot.
+LEXICON PrnPersSg2
+%<prn%>%<pers%>%<p2%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersSg3
+%<prn%>%<pers%>%<p3%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl2
+%<prn%>%<pers%>%<p2%>%<pl%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl1i
+%<prn%>%<pers%>%<p1%>%<pl%>%<incl%>:  PrnPossSlot ;
+
+
+! ============================================================================
+! NOUNS
+! ============================================================================
+
+LEXICON Nouns
+
+! --- Animate (take -му plural) ---
+жын:жын          T1-N-AN ;       ! 人 "person"
+есын:есын        T2-N-AN ;       ! "wild animal" (folk tales)
+лохан:лохан      T2-N-AN ;       ! 老漢 "old man"
+лопәр:лопәр      N-AN ;       ! 老婆兒 "old woman / wife"
+нүзы:нүзы        N-AN ;       ! 女子 "daughter / girl"
+эрзы:эрзы        T1-N-AN ;       ! 兒子 "son"
+вава:вава        T1-N-AN ;       ! 娃 "child"
+эр:эр            N-AN ;       ! 兒 "son, child"
+ва:ва            N-AN ;       ! 娃 "child, kid"
+гуә:гуә          N-NN ;       ! 鍋 "pot, wok"
+эр:эр            Num ;        ! 二 "two" (ordinal/counting эр)
+дада:дада        T1-N-AN ;       ! 達達 "father (address)"
+мама:мама        T1-N-AN ;       ! 媽媽 "mother"
+гўнён:гўнён      T1-N-AN ;       ! "girl, maiden"
+мучин:мучин      T2-N-AN ;       ! 母親 "mother"
+фучин:фучин      N-AN ;       ! 父親 "father"
+лон:лон          T1-N-AN ;       ! 狼 "wolf"
+ху:ху            N-AN ;       ! 狐 "fox"
+мо:мо            N-AN ;       ! 馬 "horse"
+ён:ён            T1-N-AN ;       ! 羊 "sheep"
+гу:гу            N-AN ;       ! 狗 "dog"
+минзў:минзў      T1-N-AN ;       ! 民族 "people, nation"
+сыҗя:сыҗя        T1-N-AN ;       ! "writer"
+кә:кә        N-AN ;       ! 客 "guest"
+жынму:жынму      T1-N-AN ;       ! 人們 "people" (lexicalized pl)
+
+! --- Inanimate (invariant) ---
+гуйҗя:гуйҗя      T1-N-NN ;       ! 國家 "country"
+гуй:гуй          N-NN ;       ! 國 "country, state"
+йүян:йүян        T2-N-NN ;       ! 語言 "language"
+хуа:хуа          N-NN ;       ! 話 "speech, language"
+фу:фу            N-NN ;       ! 書 "book"
+зы:зы            N-NN ;       ! 字 "character, word"
+сывын:сывын      T1-N-NN ;       ! "poem, verse"
+щёфә:щёфә        N-NN ;       ! "story"
+лышы:лышы        N-NN ;       ! 歷史 "history"
+вынхуа:вынхуа    T1-N-NN ;       ! 文化 "culture"
+вынмин:вынмин    T1-N-NN ;       ! 文明 "civilization"
+шыҗе:шыҗе        T3-N-NN ;       ! 世界 "world"
+дычү:дычү        N-NN ;       ! 地區 "region"
+дифон:дифон      T3-N-NN ;       ! 地方 "place"
+чын:чын          T3-N-NN ;       ! 城 "city"
+сан:сан          N-NN ;       ! 山 "mountain" / 田 "field"
+хә:хә            N-NN ;       ! 河 "river"
+тян:тян          T1-N-NN ;       ! 天 "sky, day"
+ди:ди            N-NN ;       ! 地 "earth, ground"
+нян:нян          T3-N-NN ;       ! 年 "year"
+жызы:жызы        T1-N-NN ;       ! 日子 "day, days"
+сыхур:сыхур      T1-N-NN ;       ! 時候 "time"
+зохуа:зохуа      T3-N-NN ;       ! "good news / blessing"
+щин:щин          T1-N-NN ;       ! 心 "heart"
+мин:мин          T1-N-NN ;       ! 命 / 名 "life / name"
+лў:лў            T3-N-NN ;       ! 路 "road"
+чё:чё            N-NN ;       ! 橋 "bridge"
+жынку:жынку      N-NN ;       ! 人口 "population"
+шычи:шычи        N-NN ;       ! 時期 "period, era"
+җя:җя            T1-N-NN ;       ! 家 "home, family"
+цун:цун          N-NN ;       ! 葱 "green onion"
+җюцай:җюцай      N-NN ;       ! 韭菜 "leek"
+бозы:бозы        N-NN ;       ! 包子 "baozi"
+жу:жу            N-NN ;       ! 肉 "meat"
+ёнжу:ёнжу        T1-N-NN ;       ! 羊肉 "mutton"
+лўфи:лўфи        T3-N-NN ;       ! 露水 "dew"
+жәту:жәту        N-NN ;       ! 日頭 "sun"
+хуәлузы:хуәлузы  N-NN ;       ! 火爐子 "stove"
+дунщи:дунщи      T1-N-NN ;       ! 東西 "thing"
+донвәр:донвәр    N-NN ;       ! 當望兒 "moment"
+
+
+! ============================================================================
+! PROPER NOUNS
+! ============================================================================
+
+LEXICON ProperNouns
+
+Җунгуй:Җунгуй            Np ;   ! 中國 China
+Җунхуа:Җунхуа           Np ;   ! 中華 Zhonghua
+Гансў:Гансў             Np ;   ! 甘肅 Gansu
+Шэнщы:Шэнщы             Np ;   ! 陝西 Shaanxi
+Шанщы:Шанщы             Np ;   ! 山西 Shanxi
+Быйҗин:Быйҗин           Np ;   ! 北京 Beijing
+Шонхэ:Шонхэ             Np ;   ! 上海 Shanghai
+Тэван:Тэван             Np ;   ! 台灣 Taiwan
+Россия:Россия           Np ;   ! Russia
+Хырхызстан:Хырхызстан   Np ;   ! Kyrgyzstan
+Хазахстан:Хазахстан     Np ;   ! Kazakhstan
+Ясыр:Ясыр               Np ;   ! Yasyr
+Шывазы:Шывазы           Np ;   ! Shyvaza
+Хуэйзў:Хуэйзў           Np ;   ! 回族 Hui / Dungan
+
+
+! ============================================================================
+! VERBS
+! ============================================================================
+
+LEXICON Verbs
+
+чы:чы            T1-V ;          ! 吃 "eat"
+хә:хә            V ;          ! 喝 "drink"
+луә:луә          V ;          ! 落 "fall, land, set"
+зў:зў            V ;          ! 走 "walk, go"
+зу:зу            V ;          ! 做 "do, make"
+лэ:лэ            V ;          ! 來 "come"
+чи:чи            V ;          ! 去 "go"
+ще:ще            V ;          ! 寫 "write"
+нян:нян          T3-V ;          ! 念 "read"
+фә:фә            V ;          ! 説 "say, speak"
+шә:шә            V ;          ! 説 "say" (variant)
+канҗян:канҗян    T3-V ;          ! 看見 "see"
+кан:кан          V ;          ! 看 "look"
+ю:ю              V ;          ! 有 "have, exist"
+щён:щён          V ;          ! 想 "think, want"
+щинэ:щинэ        T2-V ;          ! "love"
+җуа:җуа          T1-V ;          ! 抓 "grab, catch"
+дын:дын          V ;          ! 等 "wait"
+шу:шу            T2-V ;          ! 數 "count" / "tend"
+по:по            V ;          ! 跑 "run"
+фи:фи            T1-V ;          ! 飛 "fly"
+зан:зан          V ;          ! 站 "stand"
+тин:тин          V ;          ! 聽 "hear"
+хуэйда:хуэйда    T1-V ;          ! 回答 "answer"
+вынҗи:вынҗи      V ;          ! 問 "ask"
+гунзуә:гунзуә    V ;          ! 工作 "work"
+нянван:нянван    T3-V ;          ! "graduate"
+сын:сын          V ;          ! 生 "be born / live"
+җў:җў            V ;          ! 住 "live, dwell"
+бохў:бохў        T2-V ;          ! 保護 "protect"
+фаҗон:фаҗон      T1-V ;          ! 發展 "develop"
+
+
+! ============================================================================
+! ADJECTIVES
+! ============================================================================
+
+LEXICON Adjectives
+
+да:да            Adj ;        ! 大 "big"
+щё:щё            Adj ;        ! 小 "small"
+хо:хо            Adj ;        ! 好 "good"
+ха:ха            Adj ;        ! 壞 "bad"
+жә:жә            Adj ;        ! 熱 "hot"
+лын:лын          Adj ;        ! 冷 "cold"
+куан:куан        T1-Adj ;        ! 寬 "wide"
+чё:чё            Adj ;        ! 巧 "clever, fine"
+нанчин:нанчин    Adj ;        ! "young"
+ло:ло            Adj ;        ! 老 "old"
+гощин:гощин      T1-Adj ;        ! 高興 "happy, glad"
+җүнмый:җүнмый    T3-Adj ;        ! "beautiful, fine"
+юмин:юмин        Adj ;        ! 有名 "famous"
+дуә:дуә          Adj ;        ! 多 "many, much"
+шо:шо            Adj ;        ! 少 "few"
+
+
+! ============================================================================
+! ADVERBS
+! ============================================================================
+
+LEXICON Adverbs
+
+бу:бу            Adv ;        ! 不 "not"
+мә:мә            Adv ;        ! 沒 "not (perfective)"
+зэ:зэ            Adv ;        ! 在 "(prog) / at"
+ду:ду            T1-Adv ;        ! 都 "all"
+е:е              Adv ;        ! 也 "also"
+зу:зу            Adv ;        ! 就 "then, just"
+хан:хан          T1-Adv ;        ! 還 "still, yet"
+кәҗы:кәҗы        Adv ;        ! "already"
+вонщён:вонщён    T3-Adv ;        ! "always"
+манмар:манмар    T3-Adv ;        ! 慢慢兒 "slowly"
+йидани:йидани    Adv ;        ! 一旦 "once, together"
+
+
+! ============================================================================
+! NUMERALS
+! ============================================================================
+
+LEXICON Numerals
+
+йи:йи            Num ;        ! 一 1
+лён:лён          Num ;        ! 兩 2
+сан:сан          Num ;        ! 三 3
+сы:сы            Num ;        ! 四 4
+ву:ву            Num ;        ! 五 5
+лю:лю            Num ;        ! 六 6
+чи:чи            Num ;        ! 七 7
+ба:ба            Num ;        ! 八 8
+җю:җю            Num ;        ! 九 9
+шы:шы            Num ;        ! 十 10
+бый:бый          Num ;        ! 百 100
+чян:чян          Num ;        ! 千 1000
+ван:ван          Num ;        ! 萬 10000
+
+
+! ============================================================================
+! CLASSIFIERS
+! ============================================================================
+
+LEXICON Classifiers
+
+гә:гә            Cls ;        ! 個 generic
+ба:ба            Cls ;        ! 把 handfuls
+җон:җон          Cls ;        ! 張 flat sheets
+тё:тё            Cls ;        ! 條 strips, roads
+җы:җы            Cls ;        ! 枝 branches
+пи:пи            Cls ;        ! 匹 cloth
+бын:бын          Cls ;        ! 本 books
+фу:фу            Cls ;        ! 幅 pictures
+
+
+! ============================================================================
+! POSTPOSITIONS / LOCALIZERS
+! ============================================================================
+
+LEXICON Postpositions
+
+шон:шон          Post ;       ! 上 "on, above"
+ни:ни            Post ;       ! 裡 "in" (locative)
+литу:литу        Post ;       ! 裡頭 "inside"
+гынчян:гынчян    Post ;       ! 跟前 "near, beside"
+яншон:яншон      Post ;       ! "onto, toward"
+
+
+! ============================================================================
+! CONJUNCTIONS
+! ============================================================================
+
+LEXICON Conjunctions
+
+дэ:дэ            CnjCoo ;     ! 得/和 "and"
+лян:лян          CnjCoo ;     ! 連 "and, with"
+кәсы:кәсы        CnjCoo ;     ! "but"
+данпа:данпа      CnjCoo ;     ! "but, however"
+кэшы:кэшы        CnjCoo ;     ! 可是 "but"
+йинцысы:йинцысы  CnjSub ;     ! "because"
+зущён:зущён      CnjSub ;     ! "as if, like"
+
+
+! ============================================================================
+! PARTICLES
+! ============================================================================
+
+LEXICON Particles
+
+ба:ба            PartBa ;     ! 把 pretransitive / object marker
+ги:ги            PartGi ;     ! 給 dative "to, for"
+ди:ди            PartGen ;    ! 的 genitive/attributive
+ли:ли            PartLi ;     ! 哩/了 sentence-final perfective
+ни:ни            PartNi ;     ! 呢 sentence-final
+
+
+! ============================================================================
+! INTERJECTIONS
+! ============================================================================
+
+LEXICON Interjections
+
+ама:ама          Ij ;         ! "mama/papa (address)"
+о:о              Ij ;         ! "oh"
+он:он            Ij ;         ! "uh-huh"
+
+
+! ============================================================================
+! COVERAGE EXPANSION — frequent items from the Dungan Wikipedia corpus.
+! Glosses grounded in Chinese-character etymology + corpus context (the
+! articles are largely geography/politics/religion). Added after initial
+! coverage measurement; see tests/coverage.py.
+! ============================================================================
+
+LEXICON NounsExtra
+
+! --- high-frequency inanimate nouns ---
+шын:шын          N-NN ;       ! 省 "province"
+җин:җин          T2-N-NN ;       ! 京 "capital" / 金 "gold"
+йуэ:йуэ          N-NN ;       ! 月 "month"
+фын:фын          N-NN ;       ! 分 "part, minute" / 風 "wind"
+йүан:йүан        N-NN ;       ! 元 / 員 "member, unit"
+җинҗы:җинҗы      N-NN ;       ! 經濟 "economy"
+жынмин:жынмин    T1-N-NN ;       ! 人民 "people"
+гунхәгуй:гунхәгуй N-NN ;      ! 共和國 "republic"
+дабу:дабу        N-NN ;       ! "majority, most part"
+вуйүан:вуйүан    N-NN ;       ! 委員 "committee member"
+дынҗы:дынҗы      N-NN ;       ! "等級 rank" (context)
+
+! --- proper-noun components frequently standalone in the corpus ---
+Хуэй:Хуэй        Np ;         ! 回 Hui
+
+LEXICON VerbsExtra
+
+җё:җё            V ;          ! 叫 "call, be called" / 教 "teach"
+до:до            V ;          ! 到 "arrive, reach"
+чў:чў            V ;          ! 出 "exit, come out"
+йу:йу            V ;          ! 有 "have" (Shaanxi/var of ю)
+ги:ги            V ;          ! 給 "to give" (main verb; folk_tale 把三個女子給哩人哩 → гили 給哩 "gave"; cf. ги<post> dative clitic)
+лай:лай          V ;          ! 來 "to come" (folk_tale 來説他達呢 → лай шә "came [and] said"; fuller variant of лэ 來)
+
+LEXICON AdjExtra
+
+җун:җун          Adj ;        ! 重 "heavy, important" / 中 "central"
+
+! ---- Negation particles (preposed) ----
+! бу 不 and мә 沒 are listed above under Adverbs (matching their Chinese
+! adverbial status). The prohibitive бә 叵/嫑 ("don't", imperative only) is a
+! distinct mood marker and is given the <neg> tag. Heavily attested in the
+! corpus (Ни бә җё "don't shout"; ду бә зў "don't do"). [Цунвазо 1949]
+LEXICON Negators
+
+бә:бә            Neg ;        ! 叵/嫑 "don't" (prohibitive)

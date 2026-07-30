@@ -1,0 +1,59 @@
+! ============================================================================
+! stems/stems-salmi-dict.lexc — vocabulary from Olli Salmi,
+! "Dungan-English Dictionary" (Manchester: Eastbridge Books, 2018;
+! http://www.tsalo.fi/Dungan-English%20Dictionary.pdf).
+! Each entry is a corpus gap token found as a single-word headword in the
+! dictionary; part of speech, tone (Gansu, 3-tone), hanzi and gloss are taken
+! from the dictionary entry. Nouns are routed inanimate (N-NN) by default to
+! avoid -му over-generation. Dialect-neutral (shared pool).
+! ============================================================================
+
+LEXICON SalmiDict
+
+гў:гў                 V ;           ! 顾 v "care"                                    [Salmi 2018]
+гын:гын               T1-N-NN ;     ! 根 n "root"                                    [Salmi 2018]
+бэвон:бэвон           V ;           ! 拜望 v "worship"                                [Salmi 2018]
+бэ:бэ                 V ;           ! 败 v "lose (a fight)"                          [Salmi 2018]
+ле:ле                 V ;           ! 咧 v "grimace"                                 [Salmi 2018]
+я:я                   V ;           ! 压 v "lower, press down?"                      [Salmi 2018]
+бонҗер:бонҗер         Adv ;         ! 帮间⼉儿帮尖⼉儿帮肩⼉儿 adv ""                           [Salmi 2018]
+вэ:вэ                 Adj ;         ! 歪 adj "tough, capable, sharp (of eyes)"       [Salmi 2018]
+бошы:бошы             T2-N-NN ;     ! 宝⽯石 n "precious stone, gem"                   [Salmi 2018]
+вынзы:вынзы           T1-N-NN ;     ! 蚊⼦子 n "mosquito"                              [Salmi 2018]
+йибазы:йибазы         Adj ;         ! ⼀一把⼦子 a "flock (of birds)"                    [Salmi 2018]
+фуязы:фуязы           N-NN ;        ! 树丫⼦子 n "tree fork"                            [Salmi 2018]
+җычин:җычин           Adv ;         ! 知情 adv "from the heart"                       [Salmi 2018]
+би:би                 V ;           ! 闭 v "1 to hold (one‘s breath)"                [Salmi 2018]
+бянҗе:бянҗе           N-NN ;        ! 边界 n "frontier, territory"                    [Salmi 2018]
+видо:видо             N-NN ;        ! 味道 n "smell"                                  [Salmi 2018]
+ганбан:ганбан         T3-N-NN ;     ! ⼲干办 n "behaviour, action"                     [Salmi 2018]
+гўдў:гўдў             N-NN ;        ! ⾻骨都 n "bone"                                  [Salmi 2018]
+гўрбани:гўрбани       T2-N-NN ;     ! 古尔帮库尔班 n "(a religious"                       [Salmi 2018]
+донву:донву           N-NN ;        ! — n ""                                        [Salmi 2018]
+манла:манла           T2-N-NN ;     ! 满拉 n ""                                       [Salmi 2018]
+хошо:хошо             Adj ;         ! 好少 a "good deal, plenty"                      [Salmi 2018]
+шышон:шышон           Adv ;         ! 世上 adv "in the world"                         [Salmi 2018]
+билүн:билүн           T2-N-NN ;     ! ⽐比论 n "example"                               [Salmi 2018]
+боҗон:боҗон           V ;           ! 报账 v "to report"                              [Salmi 2018]
+бусы:бусы             T1-V ;        ! 不是 v "is not"                                 [Salmi 2018]
+быйбон:быйбон         V ;           ! 背绑 v "tie behind the back"                    [Salmi 2018]
+бё:бё                 V ;           ! — v "to mount a horse, to jump on a horse"    [Salmi 2018]
+ви:ви                 V ;           ! 围⾜足畏 v "move to a place, move"                [Salmi 2018]
+воншы:воншы           T3-Adj ;      ! 旺实 adj "plentиful"                            [Salmi 2018]
+гуйҗунди:гуйҗунди     T3-Adj ;      ! 贵重的 adj "valuable, dear"                      [Salmi 2018]
+гэнян:гэнян           T3-V ;        ! 盖眼 v "conceal, hide from sight"               [Salmi 2018]
+гўва:гўва             T1-N-NN ;     ! — n "witness"                                 [Salmi 2018]
+дянзы:дянзы           N-NN ;        ! 点⼦子 n "drop"                                  [Salmi 2018]
+йиҗи:йиҗи             N-NN ;        ! — n "scheme"                                  [Salmi 2018]
+тэзы:тэзы             N-NN ;        ! 台⼦子 n "platform, stage"                       [Salmi 2018]
+халэ:халэ             V ;           ! 下来 v "1 get off, down, set down"              [Salmi 2018]
+хуэйзў:хуэйзў         N-NN ;        ! 回族 n "回族 Dungan (also attributively for"      [Salmi 2018]
+чинчин:чинчин         T1-N-NN ;     ! 亲亲 n "relatives"                              [Salmi 2018]
+чю:чю                 N-NN ;        ! 秋 n "autumn"                                  [Salmi 2018]
+чўшы:чўшы             V ;           ! 出世 v "to be born"                             [Salmi 2018]
+шуҗинзы:шуҗинзы       T2-N-NN ;     ! ⼿手⼱巾⼦子 n "handkerchief"                       [Salmi 2018]
+щинхо:щинхо           N-NN ;        ! 信号 n "horn (in a car)"                        [Salmi 2018]
+щянху:щянху           T3-N-NN ;     ! 先后 n "sister-in-law"                          [Salmi 2018]
+җиндян:җиндян         N-NN ;        ! 经典 n "Koran"                                  [Salmi 2018]
+җитян:җитян           Adj ;         ! ⼏几天 a "few days."                             [Salmi 2018]
+җогў:җогў             V ;           ! 照顾 v "take care of"                           [Salmi 2018]

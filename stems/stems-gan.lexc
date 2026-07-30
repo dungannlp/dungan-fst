@@ -1,0 +1,35 @@
+! ============================================================================
+! stems/stems-gan.lexc  —  GANSU-DIALECT STEMS (standard, 3-tone)
+!
+! Concatenated as: root morphotactics + stems-common + THIS file.
+! Defines ONLY the dialect-hook lexicons referenced from Root:
+! PronDial, CopulaDial, VerbDial — holding the forms specific to Gansu.
+! Source: Russian Wikipedia "Дунганский язык" (Яншансин 1968; 林涛 2012).
+! ============================================================================
+
+! ---- Pronouns specific to Gansu: 1sg вә, 1pl вәму, 3pl таму ----
+LEXICON PronDial
+вә:вә        PrnPersSg1 ;     ! 我 "I"
+вәму:вәму    PrnPersPl1 ;     ! 我們 "we"
+таму:таму    PrnPersPl3 ;     ! 他們 "they"
+
+LEXICON PrnPersSg1
+%<prn%>%<pers%>%<p1%>%<sg%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl1
+%<prn%>%<pers%>%<p1%>%<pl%>:  PrnPossSlot ;
+
+LEXICON PrnPersPl3
+%<prn%>%<pers%>%<p3%>%<pl%>:  PrnPossSlot ;
+
+! ---- Copula: Gansu сы (是) ----
+LEXICON CopulaDial
+сы:сы        Cop ;            ! 是 "to be" (Gansu standard)
+
+! ---- Gansu-specific verb form ----
+LEXICON VerbDial
+ви:ви        V ;              ! "to be, become" (Gansu; cf. Shaanxi вый)
+
+! ---- Classifier (Gansu uses standard гә, already in common; stub for hook parity) ----
+LEXICON ClsDial
+гә:гә        Cls ;            ! 個 generic classifier (Gansu standard form)

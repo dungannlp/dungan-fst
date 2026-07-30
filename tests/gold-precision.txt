@@ -1,0 +1,151 @@
+# Precision gold set for the Dungan FST.
+# Each line: TOKEN <TAB> CORRECT_ANALYSIS <TAB> HANZI <TAB> GLOSS
+# The CORRECT_ANALYSIS is the single contextually-correct reading, determined
+# from the hanzi (which disambiguates the morpheme). We score whether the
+# analyser PRODUCES this reading (recall) and how many OTHER readings it adds
+# (ambiguity). Tone tags are included where the dictionary attests them.
+#
+# CIRCULARITY CAVEAT (read before citing the 100% figure): this measurement is
+# a CLOSED LOOP on one source. The Yanshansin dictionary feeds BOTH the
+# analyser's stems (stem, POS-from-gloss, tone-from-marks, hanzi) AND these
+# gold labels (the "correct" reading is fixed by the same hanzi). The same
+# segmentation / POS / tone decisions sit on both sides. So a match tests
+# INTERNAL CONSISTENCY, not correctness: it catches implementation bugs (a
+# twol rule that misfires, a typo in a continuation class, lexicon/gold drift)
+# but CANNOT catch errors shared by both sides (a wrong dictionary entry or a
+# wrong linguistic decision applied uniformly). Breaking the loop needs an
+# INDEPENDENT gold (another dictionary, a separately annotated corpus) and/or
+# an independent adjudicator (native speaker / Dungan specialist). The point is
+# not that AI tooling assisted the markup, but that the loop is closed: a human
+# building analyser and gold from one dictionary would get the same result.
+# (Coverage is free of this loop: it runs on external text and scores only
+# recognition.)
+#
+# Tokens drawn from the trilingual parallel corpus (Wikipedia
+# 'Дунганский язык' glossed sentences + the folk tale), Gansu/standard.
+#
+# ---- pronouns ----
+вә	вә<prn><pers><p1><sg>	我	I
+ни	ни<prn><pers><p2><sg>	你	you(sg)
+та	та<prn><pers><p3><sg>	他	he/she
+вәму	вәму<prn><pers><p1><pl>	我們	we (lexicalized)
+# ---- common verbs (hanzi fixes the tone) ----
+чы	чы<vblex>	吃	eat
+ще	ще<vblex>	寫	write
+лэ	лэ<vblex>	來	come
+кў	кў<vblex>	哭	cry
+# ---- verb + aspect (the morphology must be right) ----
+чыли	чы<vblex><pst>	吃哩	ate (perfective)
+лэли	лэ<vblex><pst>	來哩	came (perfective)
+# ---- nouns ----
+фан	фан<n><nn>	飯	rice/meal
+зы	зы<n><nn>	字	character/word
+дунщи	дунщи<n><nn>	東西	thing
+кә	кә<n><an><sg>	客	guest (animate)
+# ---- particles / function words ----
+ба	ба<part>	把	disposal marker
+зэ	зэ<adv>	再	again
+# ---- folk tale tokens (Gansu narrative) ----
+лохан	лохан<n><an><sg>	老漢	old man
+нүзы	нүзы<n><an><sg>	女子	daughter/girl (animate)
+сангә	сан<num><cls>	三個	three + classifier (compositional)
+шули	шу<vblex><pst>	守哩	guarded/kept
+йигә	йи<num><cls>	一個	one + classifier (compositional)
+# ---- expanded set: adjudicated against hanzi from the corpus ----
+# (homographs: the gold picks the reading the hanzi attests)
+да	да<adj>	大	big
+лопәр	лопәр<n><an><sg>	老婆兒	old woman/wife
+ги	ги<post>	給	to/for (dative)
+ю	ю<vblex>	有	have/exist
+дуә	дуә<adj>	多	many
+чили	чи<vblex><pst>	去哩	went (perfective)
+йүан	йүан<n><nn>	原	origin/source
+кан	кан<vblex>	看	look/read
+дын	дын<vblex>	等	wait
+нённён	нённён<n><an><sg>	娘娘	auntie
+щя	щя<vblex>	下	descend/fall
+нэхур	нэхур<n><nn>	那候兒	that time
+җәгә	җәгә<prn><dem>	這個	this
+лэ	лэ<vblex>	來	come
+шу	шу<vblex>	守	guard
+# ---- the locative construction (validates the locative morphotactics) ----
+җяни	җя<n><nn><loc>	家里	at home
+гуәни	гуә<n><nn><loc>	鍋里	in the pot
+хонзыни	хонзы<n><nn><loc>	巷子里	in the lane
+# ---- numeral + classifier (compositional) ----
+эргә	эр<num><cls>	二個	two/second + classifier
+# ---- possessive (та + ди) ----
+тади	та<prn><pers><p3><sg><px>	他的	his/her
+# ---- predicative adjective + durative (熱底呢 "is hot"); validates the durative slot ----
+жәдини	жә<adj><prog>	熱底呢	is (now) hot
+# ---- verb + prospective ни (落呢 "hasn't set yet") ----
+луәни	луә<vblex><fut>	落呢	will/hasn't fall(en)
+# ---- more adjudicated single tokens ----
+зу	зу<vblex>	走	walk/leave
+ги	ги<post>	給	give/to
+кан	кан<vblex>	看	look
+лопәр	лопәр<n><an><sg>	老婆兒	wife
+эр	эр<num>	二	two
+гуә	гуә<n><nn>	鍋	pot
+# ---- batch 3: adjudicated against hanzi ----
+мә	мә<adv>	沒	not (perfective negator)
+зуәди	зуә<vblex><prog>	坐底	sitting
+лон	лон<n><an><sg>	狼	wolf
+донвәр	донвәр<n><nn>	當望兒	right away/moment
+хуәлузы	хуәлузы<n><nn>	火爐子	stove
+са	са<prn><itg>	啥	what
+лян	лян<cnjcoo>	連	and/with
+цун	цун<n><nn>	葱	scallion
+шә	шә<vblex>	説	say
+зули	зу<vblex><pst>	走哩	left (perfective)
+до	до<vblex>	打	hit/from
+ёнжу	ёнжу<n><nn>	羊肉	mutton
+бозы	бозы<n><nn>	包子	bun/dumpling
+шәни	шә<vblex><fut>	説呢	will say
+зуә	зуә<vblex>	坐	sit
+# ---- noun predicative aspect in V-O compounds (寫字底呢 "is writing") ----
+зыдини	зы<n><nn><prog>	字底呢	writing (V-O durative)
+ваму	ва<n><an><pl>	娃們	children
+# ---- batch 4: adjudicated against hanzi ----
+ё	ё<vblex>	要	want/need
+хан	хан<adv>	還	still/yet
+ду	ду<adv>	都	all
+ву	ву<num>	五	five
+кўли	кў<vblex><pst>	哭哩	cried
+дюха	дюха<vblex>	丢下	abandon/leave
+ляншу	ляншу<n><nn>	連手	companion/friend
+лёнгә	лён<num><cls>	兩個	two + classifier
+жу	жу<n><nn>	肉	meat
+чын	чын<n><nn>	成	become/whole
+йитянҗя	йитянҗя<n><nn>	一天價	all day long
+җўди	җў<vblex><prog>	煮底	boiling/cooking
+йүдини	йү<n><nn><prog>	雨底呢	raining (V-O durative)
+# ---- possessive pronoun (他的 "his"); validates compositional <px> over a bad dict entry ----
+тади	та<prn><pers><p3><sg><px>	他的	his/her
+# ---- batch 5: unambiguous tokens, adjudicated against hanzi ----
+дэ	дэ<cnjcoo>	跟	and/with
+боди	бо<vblex><prog>	報底	reporting/reading (paper)
+лэни	лэ<vblex><fut>	來呢	will come
+мир	мир<n><nn>	明兒	tomorrow
+вәди	вә<prn><pers><p1><sg><px>	我的	my
+җя	җя<n><nn>	家	home/family
+хузы	хузы<n><nn>	狐子	fox
+тян	тян<n><nn>	天	day/sky
+чини	чи<vblex><fut>	去呢	will go
+подо	подо<vblex>	跑到	run to
+заму	заму<prn><pers><p1><pl><incl>	咱們	we (inclusive)
+жәту	жәту<n><nn>	熱頭	sun
+зандо	зандо<n><nn>	窰洞	cave dwelling
+йинцысы	йинцысы<cnjsub>	因此	therefore
+# ---- predicative prospective ни on object noun (吃羊呢 "eats sheep") ----
+ённи	ён<n><an><sg><fut>	羊呢	(eats) sheep
+кини	ки<n><nn><fut>	客呢	(comes) guest
+# ---- batch 6: crossing 100 tokens ----
+лянмян	лянмян<n><nn>	臉面	face
+куандихын	куан<adj><sup>	寬得很	very wide
+ган	ган<vblex>	趕	chase/than
+юни	ю<vblex><fut>	有呢	will have
+җонгуйди	җонгуйди<n><nn>	掌柜的	boss/manager
+гэ	гэ<n><an><sg>	哥	elder brother
+фудини	фу<n><nn><prog>	書底呢	reading (book, V-O)
+худи	ху<n><an><sg><prog>	吼底	yelling (V-O durative)

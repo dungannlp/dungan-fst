@@ -1,0 +1,229 @@
+! ============================================================================
+! stems/stems-salmi.lexc — vocabulary & localizers from Olli Salmi,
+! 'The Syntax of Central Asian Dungan' (draft, Oslo Digital Archive of Dungan
+! Studies). Attested in the grammar's example sentences. Dialect-neutral.
+! ============================================================================
+
+LEXICON LocSalmi
+либян:либян           Loc ;
+диха:диха            Loc ;
+готу:готу            Loc ;
+вэчян:вэчян           Loc ;
+йиху:йиху            Loc ;
+зыху:зыху            Loc ;
+зычян:зычян           Loc ;
+йинанзы:йинанзы         Loc ;
+бонни:бонни           Loc ;
+быйху:быйху           Loc ;
+хату:хату            Loc ;
+җунҗян:җунҗян          Loc ;
+вифын:вифын           Loc ;
+йимяр:йимяр           Loc ;
+йитуар:йитуар          Loc ;
+җуви:җуви            Loc ;
+гынни:гынни           Loc ;
+туни:туни            Loc ;
+нэтар:нэтар           Loc ;
+литу:литу            Loc ;
+шон:шон             Loc ;
+ха:ха              Loc ;
+
+LEXICON NounsSalmi
+нүр:нүр             T3-N-NN ;
+ятуни:ятуни           N-NN ;
+трактор:трактор         T3-N-NN ;
+солдат:солдат          N-NN ;
+комисия:комисия         N-NN ;
+зуәгунжын:зуәгунжын       N-NN ;
+интернат:интернат        T1-N-NN ;
+щёнҗуон:щёнҗуон         T1-N-NN ;
+щифон:щифон           T1-N-NN ;
+сыжын:сыжын           N-NN ;
+ложын:ложын           T2-N-NN ;
+сунзы:сунзы           N-NN ;
+чунсунзы:чунсунзы        T1-N-NN ;
+фынфыр:фынфыр          T3-N-NN ;
+мэти:мэти            N-NN ;
+мянхуа:мянхуа          N-NN ;
+
+LEXICON VerbsSalmi
+поли:поли            T2-V ;
+фә:фә              V ;
+нын:нын             T1-V ;
+туә:туә             V ;
+бочў:бочў            V ;
+вончў:вончў           V ;
+нянди:нянди           V ;
+шынли:шынли           T1-V ;
+шынха:шынха           V ;
+җуондо:җуондо          T1-V ;
+люшон:люшон           V ;
+занли:занли           V ;
+зудёли:зудёли          V ;
+хуэйлэ:хуэйлэ          V ;
+
+LEXICON AdjSalmi
+хунди:хунди           Adj ;
+ланди:ланди           Adj ;
+хуонди:хуонди          T1-Adj ;
+ганҗин:ганҗин          Adj ;
+
+
+! ============================================================================
+! Curated high-frequency corpus items (Dungan Wikipedia), lowercase forms as
+! they appear in running text. Proper nouns appear lowercased here because the
+! corpus does not consistently capitalize; glosses from hanzi etymology.
+! ============================================================================
+
+LEXICON CorpusProp2
+
+җунгуй:җунгуй    Np ;   ! 中國 China (lowercase as in corpus)
+җунхуа:җунхуа    Np ;   ! 中華 Zhonghua
+яхўти:яхўти      Np ;   ! Jew/Judea
+эрса:эрса        Np ;   ! عيسى Jesus (Isa)
+хына:хына        Np ;   ! 河南 Henan
+шонхэ:шонхэ      Np ;   ! 上海 Shanghai
+быйҗин:быйҗин    Np ;   ! 北京 Beijing
+тэван:тэван      Np ;   ! 台灣 Taiwan
+нинщя:нинщя      Np ;   ! 寧夏 Ningxia
+шанщы:шанщы      Np ;   ! 山西 Shanxi
+
+LEXICON CorpusNoun2
+
+щы:щы            N-NN ;   ! 市 "city" / 是 (var)
+җу:җу            N-NN ;   ! 主 "lord,主" / 豬 "pig"
+цы:цы            N-NN ;   ! 次 "time, order"
+чин:чин          T1-N-NN ;   ! 情 / 親 "feeling / relative"
+җён:җён          N-NN ;   ! 講 / 將 (context)
+лы:лы            N-NN ;   ! 里 / 理 "li (unit) / principle"
+ан:ан            N-NN ;   ! 案 / 安 (context)
+вэбу:вэбу        N-NN ;   ! 外部 "exterior"
+зун:зун          N-NN ;   ! 總 / 宗 "total / clan"
+щян:щян          N-NN ;   ! 縣 "county" / 線 "line"
+мянҗы:мянҗы      N-NN ;   ! 面積 "area"
+шўҗы:шўҗы        N-NN ;   ! 數字 "number, digit"
+тыйү:тыйү        N-NN ;   ! 體育 "sports"
+чүан:чүан        N-NN ;   ! 全 / 川 "whole / river"
+зыҗычү:зыҗычү    N-NN ;   ! 自治區 "autonomous region"
+минчын:минчын    N-NN ;   ! 名稱 "name, designation"
+гунлы:гунлы      N-NN ;   ! 公里 "kilometer"
+далў:далў        T3-N-NN ;   ! 大陸 "continent, mainland"
+тыйҗы:тыйҗы      N-NN ;   ! 體制 "system"
+чынвый:чынвый    N-NN ;   ! 成為 "become"
+
+LEXICON CorpusVerb2
+
+җян:җян          V ;   ! 建 "build" / 見 "see"
+зуэй:зуэй        V ;   ! 最 (superlative marker, used adverbially)
+чү:чү            V ;   ! 出 "exit"
+
+
+! ============================================================================
+! Corpus batch 3 — high-frequency content words from Dungan Wikipedia.
+! Glosses grounded in Chinese-character etymology. Conservative POS.
+! ============================================================================
+
+LEXICON CorpusNoun3
+
+җынфў:җынфў      N-NN ;   ! 政府 "government"
+шынжын:шынжын    T3-N-NN ;   ! 聖人 "saint, sage"
+жынлый:жынлый    N-NN ;   ! 人類 "humanity, mankind"
+выййүан:выййүан  N-NN ;   ! 委員 "committee member"
+выййүанхуэй:выййүанхуэй  N-NN ;   ! 委員會 "committee"
+дунвў:дунвў      N-NN ;   ! 動物 "animal"
+җянчын:җянчын    N-NN ;   ! 建成 / 建設 "construction"
+щиншы:щиншы      N-NN ;   ! 形式 "form" / 現時 "present"
+выййү:выййү      N-NN ;   ! 委員 / 外語 (context)
+дин:дин          N-NN ;   ! 頂 / 定 "top / fixed"
+гун:гун          N-NN ;   ! 工 / 公 "work / public"
+бян:бян          N-NN ;   ! 邊 "side, edge"
+чон:чон          N-NN ;   ! 長 / 場 "length / field"
+җысы:җысы        T3-N-NN ;   ! 知識 / 即是 (context)
+йуню:йуню        N-NN ;   ! 由於 "due to" / 語言 (context)
+җүн:җүн          N-NN ;   ! 軍 / 君 "army / lord"
+мўчян:мўчян      N-NN ;   ! 目前 "at present"
+
+LEXICON CorpusProp3
+
+гансў:гансў      Np ;   ! 甘肅 Gansu (lowercase as in corpus)
+ныймынгў:ныймынгў Np ;  ! 內蒙古 Inner Mongolia
+җунгун:җунгун    Np ;   ! 中共 Chinese Communist Party
+җунгуң:җунгуң    Np ;   ! 中共 (variant)
+
+LEXICON CorpusAdv3
+
+зэмусы:зэмусы    T3-Adv ;   ! "thus, in this way"
+зуэйда:зуэйда    Adv ;   ! 最大 "biggest" (superlative+adj, lexicalized)
+хын:хын          Adv ;   ! 很 "very"
+йиче:йиче        T1-Adv ;   ! 一切 "all, entire"
+
+LEXICON CorpusVerb3
+
+дады:дады        V ;   ! 打的 / "to be located" (context)
+суә:суә          V ;   ! 説 "say" (variant) / 算 "count"
+тун:тун          T1-V ;   ! 通 "connect, pass through"
+
+
+! ===========================================================================
+! CorpusNoun4 — common nouns attested in the Wp/dng corpus (freq >= 6),
+! each identified by its 漢字 via the regular Gansu/Shaanxi Mandarin↔Cyrillic
+! correspondence; ambiguous-homophone and verb/adjective tokens are excluded.
+! Several were context-disambiguated in the corpus (marked). Routed N-NN, so
+! each also yields its locative (-ни/-шон), genitive (-ди) and plural (-му).
+! ===========================================================================
+LEXICON CorpusNoun4
+
+кәҗы:кәҗы          N-NN ;   ! 科技 "science and technology"
+шынфын:шынфын      N-NN ;   ! 省份 "province" (context: "the provincial capital is…")
+шынхуэй:шынхуэй    N-NN ;   ! 省會 "provincial capital" (context-confirmed)
+зунлы:зунлы        N-NN ;   ! 總理 "premier" (context: State Council Premier)
+шўйү:шўйү          N-NN ;   ! 水域 "body of water, waters"
+щыбый:щыбый        N-NN ;   ! 西北 "northwest"
+җўщы:җўщы          N-NN ;   ! 主席 "chairman"
+хәзуә:хәзуә        N-NN ;   ! 合作 "cooperation"
+чынйүан:чынйүан    N-NN ;   ! 成員 "member"
+фынбу:фынбу        N-NN ;   ! 分佈 "distribution"
+шыҗы:шыҗы          N-NN ;   ! 世紀 "century"
+тўды:тўды          N-NN ;   ! 土地 "land, soil"
+шыҗян:шыҗян        N-NN ;   ! 時間 "time"
+пинйүан:пинйүан    N-NN ;   ! 平原 "plain"
+быйбу:быйбу        N-NN ;   ! 北部 "northern part"
+дунбу:дунбу        N-NN ;   ! 東部 "eastern part"
+щыбу:щыбу          N-NN ;   ! 西部 "western part"
+нанбу:нанбу        N-NN ;   ! 南部 "southern part"
+гунчандон:гунчандон  N-NN ;   ! 共產黨 "the Communist Party"
+дащүә:дащүә        N-NN ;   ! 大學 "university"
+лўды:лўды          N-NN ;   ! 陸地 "dry land"
+шыдә:шыдә          N-NN ;   ! 時代 "era, epoch"
+мойы:мойы          N-NN ;   ! 貿易 "trade"
+йымин:йымин        N-NN ;   ! 移民 "immigrant, migration"
+дыфон:дыфон        N-NN ;   ! 地方 "place, locality" (context: "this place")
+ныйжун:ныйжун      N-NN ;   ! 內容 "content"
+нунйә:нунйә        N-NN ;   ! 農業 "agriculture"
+щинҗынчү:щинҗынчү  N-NN ;   ! 行政區 "administrative region"
+җунбу:җунбу        N-NN ;   ! 中部 "central part"
+зўщян:зўщян        N-NN ;   ! 祖先 "ancestor"
+анчүан:анчүан      N-NN ;   ! 安全 "safety, security"
+
+
+! ===========================================================================
+! CorpusMisc4 — verbs, adjectives and adverbs attested in the Wp/dng corpus
+! (freq >= 5), each identified by 漢字; verbs take the aspect paradigm,
+! adjectives the degree paradigm. Ambiguous/grammatical tokens excluded.
+! ===========================================================================
+LEXICON CorpusMisc4
+
+! -- verbs (regular aspect paradigm via VAspSlot) --
+бокуә:бокуә        V ;   ! 包括 "to include" (context-confirmed)
+чынлы:чынлы        V ;   ! 成立 "to establish, found" (context: government established)
+шыйун:шыйун        V ;   ! 使用 "to use"
+жынвый:жынвый      V ;   ! 認為 "to consider, think" (context-confirmed)
+чўщян:чўщян        V ;   ! 出現 "to appear, emerge"
+данжын:данжын      V ;   ! 擔任 "to serve as, hold a post" (context-confirmed)
+! -- adjectives (degree -щер / -дихын, predicative -дини) --
+җунйо:җунйо        Adj ;   ! 重要 "important"
+җўйо:җўйо          Adj ;   ! 主要 "main, principal"
+бутун:бутун        Adj ;   ! 不同 "different"
+! -- adverbs --
+йыҗин:йыҗин        Adv ;   ! 已經 "already"
+зуэйдуә:зуэйдуә    Adv ;   ! 最多 "at most, the most"
