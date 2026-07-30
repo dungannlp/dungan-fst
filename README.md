@@ -219,4 +219,4 @@ Early-stage seed. Natural next steps:
 
 ## Licence
 
-Intended for release under MIT license.
+Intended for release under GPLv3 license (because of ShareAlike data parts).
