@@ -169,7 +169,7 @@ check-all: test check precision swadesh
 # reproduces the full published profile/typology tables only after the fetch.
 # ---------------------------------------------------------------------------
 .PHONY: ablation profile typology subject-overlap heldout holdout-ablation \
-        fetch-heldout adjudication experiments
+        fetch-heldout adjudication experiments sensitivity precision-errors
 
 # Word-list ablation: coverage with the stem lexicon reduced to the root
 # morphotactics, isolating what the lexicon itself contributes.
@@ -206,6 +206,17 @@ holdout-ablation: all
 # an explicit name for it.
 fetch-heldout: heldout
 
+# Sensitivity of the profile to the counting rule: first vs any reading,
+# productivity normalised per 10k tokens, cross-register rank agreement under
+# both rules, and token-level bootstrap intervals for the load.
+sensitivity: all
+	python3 tests/sensitivity.py gan
+
+# What the readings precision.py counts as wrong actually are (paper: 26 POS
+# splits, 9 clitic readings, 6 homograph+POS, 2 lexical homographs).
+precision-errors: all
+	python3 tests/precision_errors.py gan
+
 # Stratified worksheet for independent native-speaker adjudication of precision.
 adjudication: all
 	python3 tests/build_adjudication.py
@@ -213,7 +224,7 @@ adjudication: all
 # Everything that runs to completion from a clean checkout without a download.
 # Note that profile and typology cover only the encyclopaedic register until the
 # held-out texts have been fetched --- see the note in the header.
-experiments: ablation profile typology subject-overlap
+experiments: ablation profile typology subject-overlap sensitivity precision-errors
 
 clean:
 	rm -f *.hfst

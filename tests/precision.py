@@ -70,6 +70,10 @@ def main():
     print(f"  recognized (any analysis)       : {recognized}/{n} = {100*recognized/n:.1f}%")
     print(f"  mean analyses per recognized tok: {total_analyses/recognized:.2f}" if recognized else "  (none recognized)")
     print(f"  mean wrong extra readings/tok   : {over/n:.2f}")
+    if total_analyses:
+        print(f"  tone-blind precision (readings) : {total_analyses-over}/{total_analyses} "
+              f"= {100*(total_analyses-over)/total_analyses:.1f}%")
+        print(f"  tone-blind recall (items)       : {recall}/{n} = {100*recall/n:.1f}%")
     if misses:
         print(f"\n  misses ({len(misses)}):")
         for tok,g,outs in misses:

@@ -32,29 +32,30 @@ Everything printed by this script is reproducible: no randomness is used
 anywhere (the permutation test enumerates all n! permutations exactly for
 n <= 10, which is the case for the ten categories of the paper's table).
 """
-import sys, os, re, json, glob, subprocess, itertools, math
+import sys, os, re, json, glob, subprocess, math
 from collections import Counter, defaultdict
 
 WORD = re.compile(r"[А-Яа-яЁёӘәҢңҖҗЎўҮүъь]+")
-TAG  = re.compile(r"<[^>]+>")
-SUP  = re.compile(r"<sup[^>]*>.*?</sup>", re.S)
+TAG = re.compile(r"<[^>]+>")
+SUP = re.compile(r"<sup[^>]*>.*?</sup>", re.S)
 
-HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
 dia = sys.argv[1] if len(sys.argv) > 1 else "gan"
 ana = os.path.join(ROOT, f"dng-{dia}.automorf.hfst")
 if not os.path.exists(ana):
     sys.exit(f"Analyser not built: {ana}\nRun: make {dia}")
 
-POS     = {"n","np","vblex","adj","adv","num","prn","post","part",
-           "cnjcoo","cnjsub","cls","cop","ij"}
-LEXFEAT = {"nn","an","t1","t2","t3","neg","incl","dem","itg"}
-ZERO    = {"sg","pers","p1","p2","p3"}
-OVERT   = ["gen","pst","prog","fut","loc","pl","px","exp","sup","comp"]
+POS = {"n", "np", "vblex", "adj", "adv", "num", "prn", "post", "part",
+       "cnjcoo", "cnjsub", "cls", "cop", "ij"}
+LEXFEAT = {"nn", "an", "t1", "t2", "t3", "neg", "incl", "dem", "itg"}
+ZERO = {"sg", "pers", "p1", "p2", "p3"}
+OVERT = ["gen", "pst", "prog", "fut", "loc", "pl", "px", "exp", "sup", "comp"]
 OVERTSET = set(OVERT)
 
-WORKDIR   = os.environ.get("DNG_HELDOUT_DIR", "./heldout")
-PROV_PDF  = os.path.join(WORKDIR, "dungan_sayings.pdf")
-OT_GLOB   = os.path.join(WORKDIR, "ot_epub/xhtml")
+WORKDIR = os.environ.get("DNG_HELDOUT_DIR", "./heldout")
+PROV_PDF = os.path.join(WORKDIR, "dungan_sayings.pdf")
+OT_GLOB = os.path.join(WORKDIR, "ot_epub/xhtml")
 
 
 # --------------------------------------------------------------------------
@@ -69,10 +70,12 @@ def toks_dev():
         for r in pa[k]]
     return [t.lower() for t in WORD.findall("\n".join(txt)) if len(t) >= 2]
 
+
 def toks_prov():
     import fitz
     t = "".join(p.get_text() for p in fitz.open(PROV_PDF))
     return [x.lower() for x in WORD.findall(t) if len(x) >= 2]
+
 
 def toks_pent():
     out = []
@@ -105,14 +108,19 @@ def tags_of(a):
 # profile
 # --------------------------------------------------------------------------
 def profile(tokens, label):
-    freq = Counter(tokens); forms = sorted(freq); A = analyse(forms)
+    freq = Counter(tokens)
+    forms = sorted(freq)
+    A = analyse(forms)
     recog_tok = sum(freq[f] for f in forms if A[f])
 
-    catf = Counter()          # first-reading, overt categories
+    catf = Counter()  # first-reading, overt categories
     catlem = defaultdict(set)
     infl_first = infl_any = infl_unrestricted = 0
-    nread = Counter(); nread_toneblind = Counter(); nread_lemma = Counter()
-    di = Counter(); ni = Counter()
+    nread = Counter()
+    nread_toneblind = Counter()
+    nread_lemma = Counter()
+    di = Counter()
+    ni = Counter()
 
     for f in forms:
         if not A[f]:
@@ -143,17 +151,25 @@ def profile(tokens, label):
         if f.endswith("ди") and len(f) > 2:
             has_gen = any("gen" in tags_of(a) for a in A[f])
             has_prog = any("prog" in tags_of(a) for a in A[f])
-            if has_gen and has_prog: di["both"] += w
-            elif has_gen:            di["gen"] += w
-            elif has_prog:           di["prog"] += w
-            else:                    di["neither"] += w
+            if has_gen and has_prog:
+                di["both"] += w
+            elif has_gen:
+                di["gen"] += w
+            elif has_prog:
+                di["prog"] += w
+            else:
+                di["neither"] += w
         if f.endswith("ни") and len(f) > 2:
             has_loc = any("loc" in tags_of(a) for a in A[f])
             has_fut = any("fut" in tags_of(a) for a in A[f])
-            if has_loc and has_fut: ni["both"] += w
-            elif has_loc:           ni["loc"] += w
-            elif has_fut:           ni["fut"] += w
-            else:                   ni["neither"] += w
+            if has_loc and has_fut:
+                ni["both"] += w
+            elif has_loc:
+                ni["loc"] += w
+            elif has_fut:
+                ni["fut"] += w
+            else:
+                ni["neither"] += w
 
     return dict(label=label, tok=sum(freq.values()), types=len(forms), recog=recog_tok,
                 infl_first=infl_first, infl_any=infl_any,
@@ -181,13 +197,16 @@ def avg_ranks(xs):
         i = j + 1
     return ranks
 
+
 def pearson(a, b):
     n = len(a)
-    ma = sum(a) / n; mb = sum(b) / n
+    ma = sum(a) / n;
+    mb = sum(b) / n
     num = sum((x - ma) * (y - mb) for x, y in zip(a, b))
     da = math.sqrt(sum((x - ma) ** 2 for x in a))
     db = math.sqrt(sum((y - mb) ** 2 for y in b))
     return num / (da * db) if da and db else float("nan")
+
 
 def spearman_exact(x, y):
     """Spearman rho with ties (Pearson on mid-ranks) and the EXACT one-sided
@@ -257,8 +276,8 @@ for r in results:
     fa = 100 * r['infl_any'] / max(1, r['recog'])
     fu = 100 * r['infl_unrestricted'] / max(1, r['recog'])
     print(f"{r['label']:16s} {r['tok']:>8d} {r['types']:>7d} "
-          f"{100*r['recog']/r['tok']:>7.1f}% {f1:>11.1f}% {fa:>9.1f}% "
-          f"{fu:>12.1f}% {fu-f1:>9.1f}")
+          f"{100 * r['recog'] / r['tok']:>7.1f}% {f1:>11.1f}% {fa:>9.1f}% "
+          f"{fu:>12.1f}% {fu - f1:>9.1f}")
 
 print("\n--- category: % of recognised tokens (first reading) / distinct lemmas ---")
 print("category".ljust(10) + "".join(f"{r['label'][:9]:>16s}" for r in results))
@@ -266,7 +285,7 @@ for c in OVERT:
     row = c.ljust(10)
     for r in results:
         pct = 100 * r['catf'].get(c, 0) / max(1, r['recog'])
-        row += f"{pct:>9.2f}%/{r['catlem'].get(c,0):<5d}"
+        row += f"{pct:>9.2f}%/{r['catlem'].get(c, 0):<5d}"
     print(row)
 
 print("\n--- cross-register rank stability (Spearman rho over the 10 overt categories) ---")
@@ -283,20 +302,25 @@ for i in range(len(results)):
 print("\n--- ambiguity: analyses per recognised token (token-weighted) ---")
 for r in results:
     tot = sum(r['nread'].values())
+
+
     def pct(d, k): return 100 * d.get(k, 0) / max(1, sum(d.values()))
-    print(f"  {r['label']:14s} 1: {pct(r['nread'],1):5.1f}%  2: {pct(r['nread'],2):5.1f}%  "
-          f"3+: {pct(r['nread'],3):5.1f}%   "
-          f"| tone-blind 1: {pct(r['nread_toneblind'],1):5.1f}%  "
-          f"| lemma-only 1: {pct(r['nread_lemma'],1):5.1f}%")
+
+
+    print(f"  {r['label']:14s} 1: {pct(r['nread'], 1):5.1f}%  2: {pct(r['nread'], 2):5.1f}%  "
+          f"3+: {pct(r['nread'], 3):5.1f}%   "
+          f"| tone-blind 1: {pct(r['nread_toneblind'], 1):5.1f}%  "
+          f"| lemma-only 1: {pct(r['nread_lemma'], 1):5.1f}%")
 
 print("\n--- clitic ambiguity (suffixed forms only; free-standing ди/ни excluded) ---")
 for r in results:
-    dt = sum(r['di'].values()); nt = sum(r['ni'].values())
-    print(f"  {r['label']:14s} -ди {dt:5d} tok: both {100*r['di'].get('both',0)/max(1,dt):5.1f}%  "
-          f"gen-only {100*r['di'].get('gen',0)/max(1,dt):5.1f}%  "
-          f"prog-only {100*r['di'].get('prog',0)/max(1,dt):5.1f}%  "
-          f"neither {100*r['di'].get('neither',0)/max(1,dt):5.1f}%")
-    print(f"  {'':14s} -ни {nt:5d} tok: both {100*r['ni'].get('both',0)/max(1,nt):5.1f}%  "
-          f"loc-only {100*r['ni'].get('loc',0)/max(1,nt):5.1f}%  "
-          f"fut-only {100*r['ni'].get('fut',0)/max(1,nt):5.1f}%  "
-          f"neither {100*r['ni'].get('neither',0)/max(1,nt):5.1f}%")
+    dt = sum(r['di'].values())
+    nt = sum(r['ni'].values())
+    print(f"  {r['label']:14s} -ди {dt:5d} tok: both {100 * r['di'].get('both', 0) / max(1, dt):5.1f}%  "
+          f"gen-only {100 * r['di'].get('gen', 0) / max(1, dt):5.1f}%  "
+          f"prog-only {100 * r['di'].get('prog', 0) / max(1, dt):5.1f}%  "
+          f"neither {100 * r['di'].get('neither', 0) / max(1, dt):5.1f}%")
+    print(f"  {'':14s} -ни {nt:5d} tok: both {100 * r['ni'].get('both', 0) / max(1, nt):5.1f}%  "
+          f"loc-only {100 * r['ni'].get('loc', 0) / max(1, nt):5.1f}%  "
+          f"fut-only {100 * r['ni'].get('fut', 0) / max(1, nt):5.1f}%  "
+          f"neither {100 * r['ni'].get('neither', 0) / max(1, nt):5.1f}%")

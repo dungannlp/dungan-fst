@@ -83,7 +83,7 @@ def implemented_affixes():
             pair = parts[0].strip()
             if not pair.startswith("%<"):
                 continue                      # not a morphotactic transition
-            up, lo = split_colon(pair)
+            _, lo = split_colon(pair)
             if lo is None:
                 continue
             s = unescape(lo).strip()
@@ -200,7 +200,7 @@ def main():
     rows = []
     for lbl, fn in regs:
         toks = fn()
-        unk_tok, cls, members = classify(toks, lbl, affixes, out)
+        unk_tok, cls, _ = classify(toks, lbl, affixes, out)
         rows.append((lbl, len(toks), unk_tok, cls))
 
     print(f"{'register':<16}{'tokens':>9}{'unrecog':>9}{'(A) morphot':>13}"

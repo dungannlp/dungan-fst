@@ -49,6 +49,8 @@ Makefile                   builds dng-gan.* and dng-shaanxi.*
 
 Requires HFST (`hfst-lexc`, `hfst-twolc`, `hfst-compose-intersect`, …).
 
+Python 3.9+. The CI gates need only the standard library; the held-out PDF experiments (`make heldout`, `holdout-ablation`, and the three-register `profile`/`typology` tables) additionally need PyMuPDF — `pip install -r requirements-dev.txt`.
+
 ```sh
 make            # build both dialects (analyser + generator, optimised lookup)
 make gan        # Gansu only
@@ -74,6 +76,9 @@ them exactly):
 make ablation         # word-list ablation
 make profile          # morphological profile across the three registers
 make typology         # typology of recognition failures (A/B/C/D)
+make sensitivity      # profile under both counting rules, per-10k productivity,
+                      #   rank agreement under both rules, bootstrap intervals
+make precision-errors # what the readings counted as wrong actually are
 make subject-overlap  # religious-subject share of the development corpus
 make heldout          # coverage on the held-out texts
 make holdout-ablation # rebuild without the corpus-mined stems and re-measure
@@ -187,6 +192,11 @@ Per-rule, page-level provenance is given in the accompanying article (under revi
   Zavjalova 1978); and Olli Salmi, *The Syntax of Central Asian Dungan*
   (draft, Oslo Digital Archive of Dungan Studies) — aspect system, localizers,
   precise Gansu/Shaanxi correspondences (e.g. Shaanxi 1pl ңай, classifier гуә).
+> **Tag caveat.** `<pst>` and `<fut>` are engineering labels for aspectual
+> categories, not temporal ones: `-ли` marks perfective/demarcational aspect
+> and `-ни` marks prospective aspect (see the paper, Sections 4 and 5).
+> Downstream users should not read them as past and future tense.
+
 - **Lexicon**: hand-built core from corpus frequency; POS-tagged lemmas
   harvested from **en.wiktionary.org**; vocabulary attested in Salmi's grammar
   example sentences; and entries from **Yusup Yanshansin's Concise
@@ -201,8 +211,9 @@ Per-rule, page-level provenance is given in the accompanying article (under revi
   leading "9", ў → "7", ә → "H" in web-fetched text). A local copy of the PDF
   decodes differently — the special letters appear as named markers
   (ХcyrZhedesc → Җ, Хcyrstraight3 → Ү, Хcyrinv → ә, etc.) and tones as roman
-  numerals joined by hyphens — and `pypdf` then allows extracting any page
-  range. The entire Cyrillic alphabet (А–Я) has now been processed from the dictionary
+  numerals joined by hyphens — and `pypdf` (an off-repo tooling step) then allows extracting any page
+  range. The in-tree PDF readers instead use PyMuPDF (`import fitz`), the one Python
+  dependency in `requirements-dev.txt`. The entire Cyrillic alphabet (А–Я) has now been processed from the dictionary
   (6,987 stems), each carrying its headword tone where the source attests one.
 - **Coverage corpus**: the Dungan Wikipedia (Wikimedia Incubator `Wp/dng`), the
   Dungan Association of Kyrgyzstan literature portal, and trilingual
@@ -216,7 +227,3 @@ Early-stage seed. Natural next steps:
 - consider migrating the dialect split to **flag diacritics**   (`@U.DIAL.GAN@`) for a single-source build, once the lexicon is larger
 - optional interop: export to `.dix`/`lt-comp` (Apertium) or package for  GiellaLT, if integrating with either ecosystem later
 - add Constraint Grammar disambiguation
-
-## Licence
-
-Intended for release under GPLv3 license (because of ShareAlike data parts).

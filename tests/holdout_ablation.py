@@ -132,8 +132,8 @@ def main():
         print(f"{'corpus':<24}{'full':>16}{'core only':>16}{'delta':>9}")
         for lbl, fn in corpora:
             toks = fn()
-            cf, nf, pf = cov(full, toks)
-            ca, na, pa_ = cov(abl, toks)
+            _, _, pf = cov(full, toks)
+            _, _, pa_ = cov(abl, toks)
             print(f"{lbl:<24}{pf:>15.1f}%{pa_:>15.1f}%{pa_-pf:>8.1f}")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
