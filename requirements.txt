@@ -1,0 +1,3 @@
+# Runtime Python dependencies for the CI gates (gold tests, precision, swadesh,
+# coverage). These use the Python standard library only, so nothing is listed.
+# Experiment-only PDF dependencies live in requirements-dev.txt.

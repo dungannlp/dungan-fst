@@ -1,0 +1,17 @@
+# Ruff configuration for the Dungan finite-state morphology project.
+# `ruff check` is the CI lint gate (see .github/workflows/ci.yml).
+
+target-version = "py39"
+line-length = 100
+
+[lint]
+# Catch real defects with low noise:
+#   E9   syntax errors
+#   F401 unused imports
+#   F811 redefinition of an unused name
+#   F821 undefined name
+# The scripts deliberately use a compact style (combined `import a, b`,
+# one-line `if x: y` / `def f(): ...`, `a = 1; b = 2`) and tuple unpacking
+# where only some fields are used, so pycodestyle's layout rules (E4/E7) and
+# the unused-variable rule (F841) are intentionally left out.
+select = ["E9", "F401", "F811", "F821"]
