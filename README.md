@@ -49,7 +49,7 @@ Makefile                   builds dng-gan.* and dng-shaanxi.*
 
 Requires HFST (`hfst-lexc`, `hfst-twolc`, `hfst-compose-intersect`, …).
 
-Python 3.9+. The CI gates need only the standard library; the held-out PDF experiments (`make heldout`, `holdout-ablation`, and the three-register `profile`/`typology` tables) additionally need PyMuPDF — `pip install -r requirements-dev.txt`.
+Python 3.9+. The CI gates need only the standard library; the held-out PDF experiments (`make heldout`, `holdout-ablation`, `sensitivity`, and the three-register `profile`/`typology` tables) additionally need PyMuPDF — `pip install -r requirements-dev.txt`.
 
 ```sh
 make            # build both dialects (analyser + generator, optimised lookup)
@@ -143,7 +143,7 @@ distinct types in encyclopedic text.
 
 Coverage measures *recognition* — does the analyser accept a token? It says
 nothing about whether the **analysis is right**. `tests/precision.py` closes
-that gap: it scores the analyser against a 104-token hand-annotated gold set
+that gap: it scores the analyser against a 104-item hand-annotated gold set
 (`tests/gold-precision.txt`) drawn from the parallel corpus, where each token's
 correct reading is fixed by the **hanzi** (which disambiguates the morpheme that
 the tone-less Cyrillic leaves ambiguous). It reports:
@@ -152,11 +152,10 @@ the tone-less Cyrillic leaves ambiguous). It reports:
   104-token gold set, tone-insensitive)
 - **exact** — correct *including* tone
 - **mean ambiguity** — analyses returned per token (~1.5)
-- **over-generation** — wrong extra readings per token (~0.16, almost all from
-  genuinely ambiguous clitics like ни 裡/呢 the analyser cannot resolve without
-  context)
+- **over-generation** — wrong extra readings per token (~0.41, most of them
+  part-of-speech homographs such as ба `particle' / `classifier' rather than the clitics)
 
-The gold set has grown to 104 tokens over successive rounds, and building it has
+The gold set has grown to 104 items over successive rounds, and building it has
 repeatedly caught issues recognition had hidden: a missing common word (客
 *guest*), several mis-imported dictionary entries (娃們 "children" lexicalized as
 a verb, 他的 "his" as a noun, an OCR fragment "двугорбый"), and cases where the
@@ -185,7 +184,7 @@ swadesh` is part of `make check-all`.
 
 ## Sources
 
-Per-rule, page-level provenance is given in the accompanying article (under review).
+Per-rule, page-level provenance is given in the accompanying article.
 
 - **Morphology & dialect contrasts**: Russian Wikipedia *Дунганский язык*
   (citing Имазов 1993, 林涛 2012, Драгунов 1937/1940, Яншансин 1968,
@@ -201,7 +200,7 @@ Per-rule, page-level provenance is given in the accompanying article (under revi
   harvested from **en.wiktionary.org**; vocabulary attested in Salmi's grammar
   example sentences; and entries from **Yusup Yanshansin's Concise
   Dungan-Russian Dictionary** (2009; the openly available PDF scan;
-  6,987 entries mined into `stems-yanshansin.lexc`). POS is derived from the Russian gloss's *head* noun
+  9,782 entries mined into `stems-yanshansin.lexc`). POS is derived from the Russian gloss's *head* noun
   (verbs from -ть/-ти infinitives, adjectives from -ый/-ий/-ой/-ая, animate
   nouns from person/animal glosses). POS is taken from the gloss's *head* noun,
   not its first word — Russian noun phrases lead with the adjective
@@ -214,7 +213,7 @@ Per-rule, page-level provenance is given in the accompanying article (under revi
   numerals joined by hyphens — and `pypdf` (an off-repo tooling step) then allows extracting any page
   range. The in-tree PDF readers instead use PyMuPDF (`import fitz`), the one Python
   dependency in `requirements-dev.txt`. The entire Cyrillic alphabet (А–Я) has now been processed from the dictionary
-  (6,987 stems), each carrying its headword tone where the source attests one.
+  (9,782 stems), each carrying its headword tone where the source attests one.
 - **Coverage corpus**: the Dungan Wikipedia (Wikimedia Incubator `Wp/dng`), the
   Dungan Association of Kyrgyzstan literature portal, and trilingual
   (Dungan/Chinese/Russian) parallel data extracted from Wikipedia.
